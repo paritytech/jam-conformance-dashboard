@@ -13,13 +13,6 @@
     "author": "Parity Technologies",
     "url": "https://graypaper.com/clients/#polkajam_interpreted"
   },
-  "polkajam (interpreted)": {
-    "displayName": "PolkaJam (Interpreted)",
-    "language": "Rust",
-    "languageColor": "#dea584",
-    "author": "Parity Technologies",
-    "url": "https://graypaper.com/clients/#polkajam%20(interpreted)"
-  },
   "turbojam": {
     "displayName": "TurboJam",
     "language": "C++",
@@ -61,13 +54,6 @@
     "languageColor": "#00add8",
     "author": "Community",
     "url": "https://graypaper.com/clients/#jamduna"
-  },
-  "jam-duna": {
-    "displayName": "JAM DUNA",
-    "language": "Go",
-    "languageColor": "#00add8",
-    "author": "Community",
-    "url": "https://graypaper.com/clients/#jam-duna"
   },
   "fastroll": {
     "displayName": "FastRoll",

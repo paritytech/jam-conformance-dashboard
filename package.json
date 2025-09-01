@@ -7,14 +7,10 @@
     "build": "next build",
     "build:full": "npm run update-all-data && next build",
     "start": "next start",
-    "generate-data": "node scripts/generate-data.js",
-    "generate-all-data": "node scripts/generate-all-data.js",
-    "generate-all-versions": "node scripts/generate-all-versions-data.js",
     "generate-all-benchmarks": "node scripts/generate-all-benchmarks-data.js",
     "generate-aggregated": "node scripts/generate-aggregated-data.js",
     "capture-source-info": "node scripts/capture-source-info.js",
-    "update-data": "npm run generate-all-data",
-    "update-all-data": "npm run generate-data && npm run generate-all-versions && npm run generate-all-benchmarks && npm run generate-aggregated"
+    "update-all-data": "npm run generate-all-benchmarks && npm run generate-aggregated"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -8,8 +8,6 @@ import { VersionSelector } from '@/components/VersionSelector';
 import { BenchmarkTabs } from '@/components/BenchmarkTabs';
 import { BenchmarkHeatmap } from '@/components/BenchmarkHeatmap';
 import { MethodologyExplainer } from '@/components/MethodologyExplainer';
-import performanceData from '@/data/performance-data.json';
-import allVersionsData from '@/data/all-versions-data.json';
 import allBenchmarksData from '@/data/all-benchmarks-data.json';
 import aggregatedData from '@/data/aggregated-data.json';
 import clientMetadata from '@/data/client-metadata.json';
