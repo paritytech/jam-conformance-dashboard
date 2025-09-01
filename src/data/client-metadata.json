@@ -1,7 +1,6 @@
 {
   "polkajam": {
     "displayName": "PolkaJam",
-    "description": "Reference implementation",
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
@@ -10,7 +9,6 @@
   },
   "polkajam_interpreted": {
     "displayName": "PolkaJam (Interpreted)",
-    "description": "Reference implementation (interpreted mode)",
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
@@ -19,7 +17,6 @@
   },
   "polkajam (interpreted)": {
     "displayName": "PolkaJam (Interpreted)",
-    "description": "Reference implementation (interpreted mode)",
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
@@ -28,7 +25,6 @@
   },
   "turbojam": {
     "displayName": "TurboJam",
-    "description": "High-performance implementation",
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Community",
@@ -37,7 +33,6 @@
   },
   "jamzig": {
     "displayName": "JamZig",
-    "description": "Zig-based implementation",
     "language": "Zig",
     "languageColor": "#ec915c",
     "author": "Community",
@@ -46,7 +41,6 @@
   },
   "tsjam": {
     "displayName": "TSJam",
-    "description": "TypeScript implementation",
     "language": "TypeScript",
     "languageColor": "#3178c6",
     "author": "Community",
@@ -55,25 +49,22 @@
   },
   "boka": {
     "displayName": "Boka",
-    "description": "Alternative implementation",
-    "language": "Rust",
-    "languageColor": "#dea584",
+    "language": "Swift",
+    "languageColor": "#ffac45",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#boka"
   },
   "spacejam": {
     "displayName": "SpaceJam",
-    "description": "Optimized implementation",
-    "language": "C++",
-    "languageColor": "#f34b7d",
+    "language": "Rust",
+    "languageColor": "#dea584",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#spacejam"
   },
   "jamduna": {
-    "displayName": "JamDuna",
-    "description": "Focus on correctness",
+    "displayName": "JAM DUNA",
     "language": "Go",
     "languageColor": "#00add8",
     "author": "Community",
@@ -81,8 +72,7 @@
     "url": "https://graypaper.com/clients/#jamduna"
   },
   "jam-duna": {
-    "displayName": "JamDuna",
-    "description": "Focus on correctness",
+    "displayName": "JAM DUNA",
     "language": "Go",
     "languageColor": "#00add8",
     "author": "Community",
@@ -91,16 +81,14 @@
   },
   "fastroll": {
     "displayName": "FastRoll",
-    "description": "Performance-focused",
-    "language": "C",
-    "languageColor": "#555555",
+    "language": "Rust",
+    "languageColor": "#dea584",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#fastroll"
   },
   "javajam": {
     "displayName": "JavaJAM",
-    "description": "Java implementation",
     "language": "Java",
     "languageColor": "#b07219",
     "author": "Community",
@@ -109,7 +97,6 @@
   },
   "pyjamaz": {
     "displayName": "PyJAMaz",
-    "description": "Python implementation",
     "language": "Python",
     "languageColor": "#3572a5",
     "author": "Community",
@@ -117,17 +104,15 @@
     "url": "https://graypaper.com/clients/#pyjamaz"
   },
   "vinwolf": {
-    "displayName": "VinWolf",
-    "description": "V language implementation",
-    "language": "V",
-    "languageColor": "#5d87bf",
+    "displayName": "Vinwolf",
+    "language": "Rust",
+    "languageColor": "#dea584",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#vinwolf"
   },
   "jampy": {
     "displayName": "JamPy",
-    "description": "Another Python implementation",
     "language": "Python",
     "languageColor": "#3572a5",
     "author": "Community",
@@ -136,7 +121,6 @@
   },
   "jamixir": {
     "displayName": "Jamixir",
-    "description": "Elixir implementation",
     "language": "Elixir",
     "languageColor": "#6e4a7e",
     "author": "Community",
@@ -145,9 +129,8 @@
   },
   "jamzilla": {
     "displayName": "Jamzilla",
-    "description": "Mozilla-inspired implementation",
-    "language": "Rust",
-    "languageColor": "#dea584",
+    "language": "Go",
+    "languageColor": "#00add8",
     "author": "Community",
     "license": "MPL-2.0",
     "url": "https://graypaper.com/clients/#jamzilla"
