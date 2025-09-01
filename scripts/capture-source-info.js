@@ -53,8 +53,19 @@ function captureSourceInfo() {
     }
   }
   
+  // Ensure we always have some source info (use placeholder if nothing found)
+  if (!sourceInfo.source) {
+    sourceInfo.source = {
+      commitHash: 'placeholder',
+      commitDate: new Date().toISOString(),
+      commitMessage: 'Local development - no source info available',
+      commitAuthor: 'Unknown',
+      sourceUrl: 'https://github.com/davxy/jam-conformance'
+    };
+  }
+  
   // Write source info
-  fs.writeFileSync(outputPath, JSON.stringify(sourceInfo, null, 2));
+  fs.writeFileSync(outputPath, JSON.stringify(sourceInfo, null, 2) + '\n');
   console.log('Source info written to:', outputPath);
 }
 

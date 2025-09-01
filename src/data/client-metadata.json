@@ -4,7 +4,6 @@
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
-    "license": "GPL-3.0",
     "url": "https://graypaper.com/clients/#polkajam"
   },
   "polkajam_interpreted": {
@@ -12,7 +11,6 @@
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
-    "license": "GPL-3.0",
     "url": "https://graypaper.com/clients/#polkajam_interpreted"
   },
   "polkajam (interpreted)": {
@@ -20,15 +18,13 @@
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
-    "license": "GPL-3.0",
     "url": "https://graypaper.com/clients/#polkajam%20(interpreted)"
   },
   "turbojam": {
     "displayName": "TurboJam",
-    "language": "Rust",
-    "languageColor": "#dea584",
+    "language": "C++",
+    "languageColor": "#f34b7d",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#turbojam"
   },
   "jamzig": {
@@ -36,7 +32,6 @@
     "language": "Zig",
     "languageColor": "#ec915c",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#jamzig"
   },
   "tsjam": {
@@ -44,7 +39,6 @@
     "language": "TypeScript",
     "languageColor": "#3178c6",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#tsjam"
   },
   "boka": {
@@ -52,7 +46,6 @@
     "language": "Swift",
     "languageColor": "#ffac45",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#boka"
   },
   "spacejam": {
@@ -60,7 +53,6 @@
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#spacejam"
   },
   "jamduna": {
@@ -68,7 +60,6 @@
     "language": "Go",
     "languageColor": "#00add8",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#jamduna"
   },
   "jam-duna": {
@@ -76,7 +67,6 @@
     "language": "Go",
     "languageColor": "#00add8",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#jam-duna"
   },
   "fastroll": {
@@ -84,7 +74,6 @@
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#fastroll"
   },
   "javajam": {
@@ -92,7 +81,6 @@
     "language": "Java",
     "languageColor": "#b07219",
     "author": "Community",
-    "license": "Apache-2.0",
     "url": "https://graypaper.com/clients/#javajam"
   },
   "pyjamaz": {
@@ -100,7 +88,6 @@
     "language": "Python",
     "languageColor": "#3572a5",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#pyjamaz"
   },
   "vinwolf": {
@@ -108,7 +95,6 @@
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#vinwolf"
   },
   "jampy": {
@@ -116,7 +102,6 @@
     "language": "Python",
     "languageColor": "#3572a5",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#jampy"
   },
   "jamixir": {
@@ -124,7 +109,6 @@
     "language": "Elixir",
     "languageColor": "#6e4a7e",
     "author": "Community",
-    "license": "MIT",
     "url": "https://graypaper.com/clients/#jamixir"
   },
   "jamzilla": {
@@ -132,7 +116,6 @@
     "language": "Go",
     "languageColor": "#00add8",
     "author": "Community",
-    "license": "MPL-2.0",
     "url": "https://graypaper.com/clients/#jamzilla"
   }
 }

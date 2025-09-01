@@ -12,6 +12,7 @@
     "generate-all-versions": "node scripts/generate-all-versions-data.js",
     "generate-all-benchmarks": "node scripts/generate-all-benchmarks-data.js",
     "generate-aggregated": "node scripts/generate-aggregated-data.js",
+    "capture-source-info": "node scripts/capture-source-info.js",
     "update-data": "npm run generate-all-data",
     "update-all-data": "npm run generate-data && npm run generate-all-versions && npm run generate-all-benchmarks && npm run generate-aggregated"
   },
