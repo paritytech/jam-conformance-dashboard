@@ -2,17 +2,19 @@
 
 import { TeamPerformance } from '@/types/performance';
 import { motion } from 'framer-motion';
-import { BarChart3, Zap, Info } from 'lucide-react';
+import { BarChart3, Zap, Info, Clock, GitCommit } from 'lucide-react';
 import { getPerformanceColor } from '@/lib/performance-utils';
 import { useState } from 'react';
-import { PERFORMANCE_CONFIG, getPerformanceCategory, UI_CONFIG } from '@/config';
+import { PERFORMANCE_CONFIG, getPerformanceCategory, UI_CONFIG, APP_CONFIG } from '@/config';
+import sourceInfo from '@/data/source-info.json';
 
 interface PerformanceChartEnhancedProps {
   teams: TeamPerformance[];
   baseline: string;
+  timestamp?: number;
 }
 
-export function PerformanceChartEnhanced({ teams, baseline }: PerformanceChartEnhancedProps) {
+export function PerformanceChartEnhanced({ teams, baseline, timestamp }: PerformanceChartEnhancedProps) {
   const maxValue = Math.max(...teams.map(t => t.metrics.mean));
   const minValue = Math.min(...teams.filter(t => t.metrics.mean > 0).map(t => t.metrics.mean));
   const range = maxValue / minValue;
@@ -62,12 +64,31 @@ export function PerformanceChartEnhanced({ teams, baseline }: PerformanceChartEn
             </div>
           </div>
           
-          {range > 50 && shouldUseLogScale && (
-            <div className="flex items-center gap-2 text-sm text-slate-400">
-              <Info className="w-4 h-4" />
-              <span>Log scale</span>
-            </div>
-          )}
+          <div className="flex flex-col items-end gap-1 text-xs text-slate-500">
+            {timestamp && (
+              <div className="flex items-center gap-1">
+                <Clock className="w-3 h-3" />
+                <span>{new Date(timestamp).toLocaleString('en-US', { 
+                  month: 'short', 
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: '2-digit'
+                })}</span>
+              </div>
+            )}
+            {sourceInfo.source?.commitHash && sourceInfo.source.commitHash !== 'placeholder' && (
+              <a 
+                href={sourceInfo.source.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-cyan-400 transition-colors"
+                title={sourceInfo.source.commitMessage}
+              >
+                <GitCommit className="w-3 h-3" />
+                <span>{sourceInfo.source.commitHash.slice(0, 7)}</span>
+              </a>
+            )}
+          </div>
         </div>
 
         <div className="space-y-1.5">

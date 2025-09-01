@@ -13,6 +13,7 @@ import allVersionsData from '@/data/all-versions-data.json';
 import allBenchmarksData from '@/data/all-benchmarks-data.json';
 import aggregatedData from '@/data/aggregated-data.json';
 import clientMetadata from '@/data/client-metadata.json';
+import sourceInfo from '@/data/source-info.json';
 import { APP_CONFIG } from '@/config';
 import { enrichTeamWithMetadata } from '@/lib/team-utils';
 
@@ -82,7 +83,7 @@ export default function Home() {
             <>
               {/* Performance Chart at the top */}
               <div className="mb-12">
-                <PerformanceChartEnhanced teams={enrichedTeams} baseline={overviewData.baseline} />
+                <PerformanceChartEnhanced teams={enrichedTeams} baseline={overviewData.baseline} timestamp={overviewData.timestamp} />
               </div>
 
               {/* Main Content */}
@@ -116,7 +117,8 @@ export default function Home() {
               <div className="mb-12">
                 <PerformanceChartEnhanced 
                   teams={(allBenchmarksData as any)[currentVersion][currentBenchmark].teams.map((team: any) => enrichTeamWithMetadata(team))} 
-                  baseline={(allBenchmarksData as any)[currentVersion][currentBenchmark].baseline} 
+                  baseline={(allBenchmarksData as any)[currentVersion][currentBenchmark].baseline}
+                  timestamp={(allBenchmarksData as any)[currentVersion][currentBenchmark].timestamp} 
                 />
               </div>
               
@@ -141,7 +143,24 @@ export default function Home() {
 
           {/* Footer */}
           <div className="mt-16 text-center text-sm text-slate-500">
-            <p>Performance data updated regularly. Version: {currentVersion}</p>
+            <p>
+              Performance data updated regularly. Version: {currentVersion}
+              {overviewData.timestamp && (
+                <span className="ml-2">
+                  | Last updated: {new Date(overviewData.timestamp).toLocaleString('en-US', { 
+                    dateStyle: 'medium', 
+                    timeStyle: 'short' 
+                  })}
+                </span>
+              )}
+              {sourceInfo.source?.commitDate && sourceInfo.source.commitHash !== 'placeholder' && (
+                <span className="ml-2">
+                  | Source data from: {new Date(sourceInfo.source.commitDate).toLocaleString('en-US', { 
+                    dateStyle: 'medium' 
+                  })}
+                </span>
+              )}
+            </p>
             <p className="mt-2">
               Testing protocol conformance at scale. Learn more at{' '}
               <a 
@@ -151,6 +170,16 @@ export default function Home() {
                 className="text-cyan-400 hover:text-cyan-300 transition-colors"
               >
                 jam-conformance
+              </a>
+              {' '}|{' '}
+              <a 
+                href={sourceInfo.source?.sourceUrl || `${APP_CONFIG.externalLinks.jamConformance}/commits/main`} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                title={sourceInfo.source?.commitMessage || 'View latest commits'}
+              >
+                {sourceInfo.source?.commitHash ? `Commit ${sourceInfo.source.commitHash.slice(0, 7)}` : 'Latest commits'}
               </a>
               {' '}|{' '}
               <a 

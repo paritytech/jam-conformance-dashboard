@@ -43,10 +43,11 @@ jobs:
       run: |
         git clone https://github.com/davxy/jam-conformance.git temp-jam-conformance
     
-    - name: Copy fuzz-reports data
+    - name: Copy fuzz-reports data and capture source info
       run: |
         rm -rf ../fuzz-reports
         cp -r temp-jam-conformance/fuzz-reports ../
+        node scripts/capture-source-info.js
         rm -rf temp-jam-conformance
     
     - name: Install dependencies
