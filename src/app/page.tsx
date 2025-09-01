@@ -19,6 +19,9 @@ export default function Home() {
   const [currentVersion, setCurrentVersion] = useState(versions[0] || '0.7.0');
   const [currentBenchmark, setCurrentBenchmark] = useState(''); // No benchmark selected by default - show main leaderboard
 
+  // Get the base path for assets
+  const basePath = process.env.NODE_ENV === 'production' ? '/jam-conformance-dashboard' : '';
+
   useEffect(() => {
     // Reset to overview when version changes
     setCurrentBenchmark('');
@@ -40,7 +43,7 @@ export default function Home() {
   const hasBenchmarkData = (allBenchmarksData as any)[currentVersion] && Object.keys((allBenchmarksData as any)[currentVersion]).length > 0;
   
   return (
-    <main className="min-h-screen" style={{ backgroundImage: 'url(/background.webp)', backgroundRepeat: 'repeat', backgroundSize: '1024px 1059px', backgroundColor: '#000000' }}>
+    <main className="min-h-screen" style={{ backgroundImage: `url(${basePath}/background.webp)`, backgroundRepeat: 'repeat', backgroundSize: '1024px 1059px', backgroundColor: '#000000' }}>
       {/* Background effects */}
       
       <div className="relative z-10">

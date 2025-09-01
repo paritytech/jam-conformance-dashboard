@@ -1,0 +1,9 @@
+{
+  "name": "JAM Conformance Performance",
+  "short_name": "JAM Performance",
+  "description": "Performance benchmarks and conformance testing for JAM protocol implementations",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}
