@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   // Add base path if deploying to GitHub Pages subdirectory
-   basePath: '/jam-performance-dashboard',
-   assetPrefix: '/jam-performance-dashboard/',
+   basePath: '/jam-conformance-dashboard',
+   assetPrefix: '/jam-conformance-dashboard/',
 };
 
 export default nextConfig;
