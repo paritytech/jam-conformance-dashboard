@@ -1,13 +1,17 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
   },
-  // Add base path if deploying to GitHub Pages subdirectory
-   basePath: '/jam-conformance-dashboard',
-   assetPrefix: '/jam-conformance-dashboard/',
+  // Only apply basePath and assetPrefix in production
+  ...(isProd && {
+    basePath: '/jam-conformance-dashboard',
+    assetPrefix: '/jam-conformance-dashboard/',
+  }),
 };
 
 export default nextConfig;

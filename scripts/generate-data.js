@@ -42,24 +42,31 @@ async function generatePerformanceData() {
     throw new Error(`Baseline team ${baseline} not found`);
   }
   
-  const teamsList = Object.entries(performanceData).map(([key, report]) => {
-    const relativeToBaseline = report.stats.import_mean / baselineData.stats.import_mean;
-    
-    return {
-      name: report.info.name,
-      metrics: {
-        mean: report.stats.import_mean,
-        p50: report.stats.import_p50,
-        p90: report.stats.import_p90,
-        p99: report.stats.import_p99,
-        max: report.stats.import_max,
-        min: report.stats.import_min,
-        stdDev: report.stats.import_std_dev
-      },
-      relativeToBaseline,
-      rank: 0
-    };
-  });
+  const teamsList = Object.entries(performanceData)
+    .filter(([key, report]) => {
+      // Filter out teams with zero or invalid values for critical metrics
+      return report.stats.import_mean > 0 && 
+             report.stats.import_p50 > 0 && 
+             report.stats.import_p90 > 0;
+    })
+    .map(([key, report]) => {
+      const relativeToBaseline = report.stats.import_mean / baselineData.stats.import_mean;
+      
+      return {
+        name: report.info.name,
+        metrics: {
+          mean: report.stats.import_mean,
+          p50: report.stats.import_p50,
+          p90: report.stats.import_p90,
+          p99: report.stats.import_p99,
+          max: report.stats.import_max,
+          min: report.stats.import_min,
+          stdDev: report.stats.import_std_dev
+        },
+        relativeToBaseline,
+        rank: 0
+      };
+    });
   
   // Sort by mean performance (lower is better)
   teamsList.sort((a, b) => a.metrics.mean - b.metrics.mean);

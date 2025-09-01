@@ -56,8 +56,8 @@
   "boka": {
     "displayName": "Boka",
     "description": "Alternative implementation",
-    "language": "Swift",
-    "languageColor": "#ffac45",
+    "language": "Rust",
+    "languageColor": "#dea584",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#boka"
@@ -65,8 +65,8 @@
   "spacejam": {
     "displayName": "SpaceJam",
     "description": "Optimized implementation",
-    "language": "Rust",
-    "languageColor": "#dea584",
+    "language": "C++",
+    "languageColor": "#f34b7d",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#spacejam"
@@ -92,8 +92,8 @@
   "fastroll": {
     "displayName": "FastRoll",
     "description": "Performance-focused",
-    "language": "Rust",
-    "languageColor": "#dea584",
+    "language": "C",
+    "languageColor": "#555555",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#fastroll"
@@ -119,8 +119,8 @@
   "vinwolf": {
     "displayName": "VinWolf",
     "description": "V language implementation",
-    "language": "Rust",
-    "languageColor": "#dea584",
+    "language": "V",
+    "languageColor": "#5d87bf",
     "author": "Community",
     "license": "MIT",
     "url": "https://graypaper.com/clients/#vinwolf"
@@ -146,8 +146,8 @@
   "jamzilla": {
     "displayName": "Jamzilla",
     "description": "Mozilla-inspired implementation",
-    "language": "Go",
-    "languageColor": "#00add8",
+    "language": "Rust",
+    "languageColor": "#dea584",
     "author": "Community",
     "license": "MPL-2.0",
     "url": "https://graypaper.com/clients/#jamzilla"

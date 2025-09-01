@@ -40,11 +40,8 @@ export default function Home() {
   const hasBenchmarkData = (allBenchmarksData as any)[currentVersion] && Object.keys((allBenchmarksData as any)[currentVersion]).length > 0;
   
   return (
-    <main className="min-h-screen bg-neutral-950">
+    <main className="min-h-screen" style={{ backgroundImage: 'url(/background.webp)', backgroundRepeat: 'repeat', backgroundSize: '1024px 1059px', backgroundColor: '#000000' }}>
       {/* Background effects */}
-      <div className="fixed inset-0 bg-gradient-to-br from-neutral-800 via-neutral-900 to-neutral-800" />
-      <div className="fixed inset-0 bg-gradient-radial from-white/[0.08] via-white/[0.03] to-transparent" />
-      <div className="fixed inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-20" />
       
       <div className="relative z-10">
         <div className="container mx-auto px-4 py-12">

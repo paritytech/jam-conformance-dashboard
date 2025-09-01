@@ -64,10 +64,16 @@ async function generateAllBenchmarksData() {
         }
       }
       
-      // Sort teams by performance to find the fastest
-      const sortedTeams = Object.entries(performanceData).sort(([,a], [,b]) => 
-        a.stats.import_mean - b.stats.import_mean
-      );
+      // Sort teams by performance to find the fastest (excluding zero values)
+      const sortedTeams = Object.entries(performanceData)
+        .filter(([,report]) => 
+          report.stats.import_mean > 0 && 
+          report.stats.import_p50 > 0 && 
+          report.stats.import_p90 > 0
+        )
+        .sort(([,a], [,b]) => 
+          a.stats.import_mean - b.stats.import_mean
+        );
       
       if (sortedTeams.length === 0) {
         console.log(`    No teams with complete data for ${benchmark}`);
@@ -78,37 +84,44 @@ async function generateAllBenchmarksData() {
       const [fastestTeamKey, baselineData] = sortedTeams[0];
       const baseline = baselineData.info.name;
       
-      const teamsList = Object.entries(performanceData).map(([key, report]) => {
-        const relativeToBaseline = report.stats.import_mean / baselineData.stats.import_mean;
-        
-        // Clean up the name for display
-        let displayName = report.info.name;
-        if (displayName.includes('-fuzzing-target')) {
-          displayName = displayName.replace('-fuzzing-target', '');
-        }
-        if (displayName.includes('-target')) {
-          displayName = displayName.replace('-target', '');
-        }
-        if (displayName.match(/-\d+\.\d+\.\d+/)) {
-          displayName = displayName.replace(/-\d+\.\d+\.\d+.*$/, '');
-        }
-        
-        return {
-          name: displayName,
-          originalName: report.info.name,
-          metrics: {
-            mean: report.stats.import_mean,
-            p50: report.stats.import_p50,
-            p90: report.stats.import_p90,
-            p99: report.stats.import_p99,
-            max: report.stats.import_max,
-            min: report.stats.import_min,
-            stdDev: report.stats.import_std_dev
-          },
-          relativeToBaseline,
-          rank: 0
-        };
-      });
+      const teamsList = Object.entries(performanceData)
+        .filter(([key, report]) => {
+          // Filter out teams with zero or invalid values for critical metrics
+          return report.stats.import_mean > 0 && 
+                 report.stats.import_p50 > 0 && 
+                 report.stats.import_p90 > 0;
+        })
+        .map(([key, report]) => {
+          const relativeToBaseline = report.stats.import_mean / baselineData.stats.import_mean;
+          
+          // Clean up the name for display
+          let displayName = report.info.name;
+          if (displayName.includes('-fuzzing-target')) {
+            displayName = displayName.replace('-fuzzing-target', '');
+          }
+          if (displayName.includes('-target')) {
+            displayName = displayName.replace('-target', '');
+          }
+          if (displayName.match(/-\d+\.\d+\.\d+/)) {
+            displayName = displayName.replace(/-\d+\.\d+\.\d+.*$/, '');
+          }
+          
+          return {
+            name: displayName,
+            originalName: report.info.name,
+            metrics: {
+              mean: report.stats.import_mean,
+              p50: report.stats.import_p50,
+              p90: report.stats.import_p90,
+              p99: report.stats.import_p99,
+              max: report.stats.import_max,
+              min: report.stats.import_min,
+              stdDev: report.stats.import_std_dev
+            },
+            relativeToBaseline,
+            rank: 0
+          };
+        });
       
       // Sort by mean performance (lower is better)
       teamsList.sort((a, b) => a.metrics.mean - b.metrics.mean);
