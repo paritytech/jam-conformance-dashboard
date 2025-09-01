@@ -122,12 +122,12 @@ export function BenchmarkHeatmap({ benchmarkData, version }: BenchmarkHeatmapPro
                             <div
                               className={`
                                 relative h-16 rounded-lg overflow-hidden transition-all duration-200
-                                ${getColor(team.relativeToBaseline)}
+                                ${getColor(team.relativeToBaseline || 0)}
                                 ${isBaseline ? 'ring-2 ring-cyan-400' : ''}
                                 group-hover/cell:scale-105
                               `}
                               style={{
-                                opacity: team.relativeToBaseline > 1 
+                                opacity: team.relativeToBaseline && team.relativeToBaseline > 1 
                                   ? Math.min(0.2 + (team.relativeToBaseline / 50) * 0.8, 1)
                                   : 0.8
                               }}
@@ -135,10 +135,10 @@ export function BenchmarkHeatmap({ benchmarkData, version }: BenchmarkHeatmapPro
                               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
                               <div className="absolute inset-0 flex flex-col items-center justify-center">
                                 <span className="text-xs font-mono text-white/90 font-medium">
-                                  {team.relativeToBaseline.toFixed(1)}x
+                                  {team.relativeToBaseline?.toFixed(1) || 'N/A'}x
                                 </span>
                                 <span className="text-[10px] text-white/70">
-                                  {team.metrics.mean.toFixed(1)}ms
+                                  {team.metrics?.mean?.toFixed(1) || 'N/A'}ms
                                 </span>
                               </div>
                             </div>
