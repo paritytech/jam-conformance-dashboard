@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Info } from 'lucide-react';
+import { PERFORMANCE_CONFIG, getPerformanceCategory } from '@/config';
 
 interface BenchmarkData {
   [benchmark: string]: {
@@ -47,14 +48,8 @@ export function BenchmarkHeatmap({ benchmarkData, version }: BenchmarkHeatmapPro
   // Get color based on relative performance
   const getColor = (relative: number) => {
     if (!relative) return 'bg-neutral-800/50';
-    if (relative <= 1.0) return 'bg-emerald-500';
-    if (relative < 1.5) return 'bg-green-500';
-    if (relative < 2) return 'bg-lime-500';
-    if (relative < 3) return 'bg-yellow-500';
-    if (relative < 5) return 'bg-amber-500';
-    if (relative < 10) return 'bg-orange-500';
-    if (relative < 20) return 'bg-red-500';
-    return 'bg-red-700';
+    const category = getPerformanceCategory(relative);
+    return PERFORMANCE_CONFIG.colors[category].bg;
   };
 
   return (

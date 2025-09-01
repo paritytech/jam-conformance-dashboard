@@ -13,14 +13,16 @@ import allVersionsData from '@/data/all-versions-data.json';
 import allBenchmarksData from '@/data/all-benchmarks-data.json';
 import aggregatedData from '@/data/aggregated-data.json';
 import clientMetadata from '@/data/client-metadata.json';
+import { APP_CONFIG } from '@/config';
+import { enrichTeamWithMetadata } from '@/lib/team-utils';
 
 export default function Home() {
   const versions = Object.keys(aggregatedData).sort().reverse();
-  const [currentVersion, setCurrentVersion] = useState(versions[0] || '0.7.0');
+  const [currentVersion, setCurrentVersion] = useState(versions[0] || APP_CONFIG.defaultVersion);
   const [currentBenchmark, setCurrentBenchmark] = useState(''); // No benchmark selected by default - show main leaderboard
 
   // Get the base path for assets
-  const basePath = process.env.NODE_ENV === 'production' ? '/jam-conformance-dashboard' : '';
+  const basePath = APP_CONFIG.paths.basePath;
 
   useEffect(() => {
     // Reset to overview when version changes
@@ -28,22 +30,19 @@ export default function Home() {
   }, [currentVersion]);
   
   // Use aggregated data for overview
-  const overviewData = aggregatedData[currentVersion as keyof typeof aggregatedData] || aggregatedData['0.7.0'];
+  const overviewData = aggregatedData[currentVersion as keyof typeof aggregatedData] || aggregatedData[APP_CONFIG.defaultVersion as keyof typeof aggregatedData];
   const fastestTeam = overviewData.teams[0];
   const baselineTeam = overviewData.teams.find(t => t.name === overviewData.baseline);
   const slowestTeam = overviewData.teams[overviewData.teams.length - 1];
   
   // Enrich team data with metadata
-  const enrichedTeams = overviewData.teams.map((team: any) => ({
-    ...team,
-    metadata: (clientMetadata as any)[team.name.toLowerCase()] || (clientMetadata as any)[team.originalName?.toLowerCase()] || {}
-  }));
+  const enrichedTeams = overviewData.teams.map((team: any) => enrichTeamWithMetadata(team));
   
   // Check if we have benchmark data for current version
   const hasBenchmarkData = (allBenchmarksData as any)[currentVersion] && Object.keys((allBenchmarksData as any)[currentVersion]).length > 0;
   
   return (
-    <main className="min-h-screen" style={{ backgroundImage: `url(${basePath}/background.webp)`, backgroundRepeat: 'repeat', backgroundSize: '1024px 1059px', backgroundColor: '#000000' }}>
+    <main className="min-h-screen" style={{ backgroundImage: `url(${basePath}${APP_CONFIG.paths.backgroundImage})`, backgroundRepeat: 'repeat', backgroundSize: '1024px 1059px', backgroundColor: '#000000' }}>
       {/* Background effects */}
       
       <div className="relative z-10">
@@ -116,10 +115,7 @@ export default function Home() {
               {/* Performance Chart for specific benchmark */}
               <div className="mb-12">
                 <PerformanceChartEnhanced 
-                  teams={(allBenchmarksData as any)[currentVersion][currentBenchmark].teams.map((team: any) => ({
-                    ...team,
-                    metadata: (clientMetadata as any)[team.name.toLowerCase()] || (clientMetadata as any)[team.originalName?.toLowerCase()] || {}
-                  }))} 
+                  teams={(allBenchmarksData as any)[currentVersion][currentBenchmark].teams.map((team: any) => enrichTeamWithMetadata(team))} 
                   baseline={(allBenchmarksData as any)[currentVersion][currentBenchmark].baseline} 
                 />
               </div>
@@ -128,20 +124,14 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                   <LeaderboardTable 
-                    teams={(allBenchmarksData as any)[currentVersion][currentBenchmark].teams.map((team: any) => ({
-                      ...team,
-                      metadata: (clientMetadata as any)[team.name.toLowerCase()] || (clientMetadata as any)[team.originalName?.toLowerCase()] || {}
-                    }))} 
+                    teams={(allBenchmarksData as any)[currentVersion][currentBenchmark].teams.map((team: any) => enrichTeamWithMetadata(team))} 
                     baseline={(allBenchmarksData as any)[currentVersion][currentBenchmark].baseline} 
                   />
                 </div>
                 
                 <div className="lg:col-span-1">
                   <AuditTimeCalculator 
-                    teams={(allBenchmarksData as any)[currentVersion][currentBenchmark].teams.map((team: any) => ({
-                      ...team,
-                      metadata: (clientMetadata as any)[team.name.toLowerCase()] || (clientMetadata as any)[team.originalName?.toLowerCase()] || {}
-                    }))} 
+                    teams={(allBenchmarksData as any)[currentVersion][currentBenchmark].teams.map((team: any) => enrichTeamWithMetadata(team))} 
                     baseline={(allBenchmarksData as any)[currentVersion][currentBenchmark].baseline} 
                   />
                 </div>
@@ -155,7 +145,7 @@ export default function Home() {
             <p className="mt-2">
               Testing protocol conformance at scale. Learn more at{' '}
               <a 
-                href="https://github.com/jam-duna/jam-conformance" 
+                href={APP_CONFIG.externalLinks.jamConformance} 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-cyan-400 hover:text-cyan-300 transition-colors"
@@ -164,7 +154,7 @@ export default function Home() {
               </a>
               {' '}|{' '}
               <a 
-                href="https://graypaper.com/clients/" 
+                href={APP_CONFIG.externalLinks.graypaperClients} 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-cyan-400 hover:text-cyan-300 transition-colors"

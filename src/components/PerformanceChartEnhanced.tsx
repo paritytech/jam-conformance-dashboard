@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { BarChart3, Zap, Info } from 'lucide-react';
 import { getPerformanceColor } from '@/lib/performance-utils';
 import { useState } from 'react';
+import { PERFORMANCE_CONFIG, getPerformanceCategory, UI_CONFIG } from '@/config';
 
 interface PerformanceChartEnhancedProps {
   teams: TeamPerformance[];
@@ -17,7 +18,7 @@ export function PerformanceChartEnhanced({ teams, baseline }: PerformanceChartEn
   const range = maxValue / minValue;
   
   // Auto-enable log scale if range is too high
-  const shouldUseLogScale = range > 50;
+  const shouldUseLogScale = range > PERFORMANCE_CONFIG.visualization.logScaleThreshold;
   
   const getBarWidth = (value: number) => {
     if (shouldUseLogScale) {
@@ -30,6 +31,7 @@ export function PerformanceChartEnhanced({ teams, baseline }: PerformanceChartEn
   };
 
   const getGradientByPerformance = (relative: number) => {
+    // Use the original gradient scheme for the performance chart
     if (relative < 1.2) return 'from-emerald-500 to-emerald-400';
     if (relative < 2) return 'from-cyan-500 to-cyan-400';
     if (relative < 5) return 'from-blue-500 to-blue-400';
@@ -43,7 +45,7 @@ export function PerformanceChartEnhanced({ teams, baseline }: PerformanceChartEn
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: UI_CONFIG.animation.mediumDuration }}
       className="relative overflow-hidden rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-2xl"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-white/[0.05]" />

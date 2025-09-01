@@ -16,18 +16,12 @@
     "update-all-data": "npm run generate-data && npm run generate-all-versions && npm run generate-all-benchmarks && npm run generate-aggregated"
   },
   "dependencies": {
-    "@nivo/bar": "^0.99.0",
-    "@nivo/core": "^0.99.0",
-    "@nivo/heatmap": "^0.99.0",
-    "@nivo/line": "^0.99.0",
-    "@nivo/pie": "^0.99.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.542.0",
     "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "recharts": "^3.1.2",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {

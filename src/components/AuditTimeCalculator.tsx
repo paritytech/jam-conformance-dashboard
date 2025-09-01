@@ -6,6 +6,7 @@ import { calculateAuditTime } from '@/lib/performance-utils';
 import { cn } from '@/lib/utils';
 import { Calculator, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { PERFORMANCE_CONFIG, UI_CONFIG } from '@/config';
 
 interface AuditTimeCalculatorProps {
   teams: TeamPerformance[];
@@ -13,14 +14,14 @@ interface AuditTimeCalculatorProps {
 }
 
 export function AuditTimeCalculator({ teams, baseline }: AuditTimeCalculatorProps) {
-  const [baselineDays, setBaselineDays] = useState(3);
+  const [baselineDays, setBaselineDays] = useState(PERFORMANCE_CONFIG.auditTime.defaultBaselineDays);
   const baselineTeam = teams.find(t => t.name === baseline);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
+      transition={{ delay: UI_CONFIG.animation.shortDuration }}
       className="relative overflow-hidden rounded-2xl bg-white/[0.02] backdrop-blur-xl border border-white/10 p-6 shadow-2xl"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-white/[0.05]" />
@@ -41,8 +42,8 @@ export function AuditTimeCalculator({ teams, baseline }: AuditTimeCalculatorProp
               value={baselineDays}
               onChange={(e) => setBaselineDays(Number(e.target.value))}
               className="w-full px-4 py-2 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-white/20"
-              min="1"
-              max="365"
+              min={PERFORMANCE_CONFIG.auditTime.minDays}
+              max={PERFORMANCE_CONFIG.auditTime.maxDays}
             />
             <p className="text-xs text-slate-500 mt-1">
               Time required for {baseline} to complete audit
@@ -70,9 +71,9 @@ export function AuditTimeCalculator({ teams, baseline }: AuditTimeCalculatorProp
                   </div>
                   <div className="text-right ml-2">
                     <span className="text-xs font-mono text-slate-300 whitespace-nowrap">
-                      {auditTime < 1 
+                      {auditTime < PERFORMANCE_CONFIG.auditTime.displayThresholds.hours 
                         ? `${Math.round(auditTime * 24)}h`
-                        : auditTime < 365 
+                        : auditTime < PERFORMANCE_CONFIG.auditTime.displayThresholds.days 
                           ? `${auditTime.toFixed(1)}d`
                           : `${(auditTime / 365).toFixed(1)}y`
                       }
