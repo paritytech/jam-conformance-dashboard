@@ -1,0 +1,68 @@
+name: Sync Data and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run every hour to sync latest data
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Clone jam-conformance repository
+      run: |
+        git clone https://github.com/davxy/jam-conformance.git temp-jam-conformance
+    
+    - name: Copy fuzz-reports data
+      run: |
+        rm -rf ../fuzz-reports
+        cp -r temp-jam-conformance/fuzz-reports ../
+        rm -rf temp-jam-conformance
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Generate data files
+      run: npm run update-all-data
+    
+    - name: Build project
+      run: npm run build
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./out
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

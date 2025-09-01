@@ -1,0 +1,42 @@
+{
+  "name": "jam-leaderboard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:full": "npm run update-all-data && next build",
+    "start": "next start",
+    "generate-data": "node scripts/generate-data.js",
+    "generate-all-data": "node scripts/generate-all-data.js",
+    "generate-all-versions": "node scripts/generate-all-versions-data.js",
+    "generate-all-benchmarks": "node scripts/generate-all-benchmarks-data.js",
+    "generate-aggregated": "node scripts/generate-aggregated-data.js",
+    "fetch-metadata": "node scripts/fetch-client-metadata.js",
+    "update-data": "npm run fetch-metadata && npm run generate-all-data",
+    "update-all-data": "npm run fetch-metadata && npm run generate-data && npm run generate-all-versions && npm run generate-all-benchmarks && npm run generate-aggregated"
+  },
+  "dependencies": {
+    "@nivo/bar": "^0.99.0",
+    "@nivo/core": "^0.99.0",
+    "@nivo/heatmap": "^0.99.0",
+    "@nivo/line": "^0.99.0",
+    "@nivo/pie": "^0.99.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.542.0",
+    "next": "15.5.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "recharts": "^3.1.2",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5"
+  }
+}
