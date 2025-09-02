@@ -51,6 +51,7 @@ export interface TeamPerformance {
     min: number;
     stdDev: number;
   };
+  score?: number;
   relativeToBaseline: number;
   rank: number;
   metadata?: ClientMetadata;

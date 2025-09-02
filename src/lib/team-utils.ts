@@ -2,9 +2,12 @@ import clientMetadata from '@/data/client-metadata.json';
 
 // Map of team name variations to canonical names
 const TEAM_NAME_MAPPINGS: Record<string, string> = {
-  // PolkaJam variations
-  'polkajam (interpreted)': 'polkajam_interpreted',
-  'polkajam_interpreted': 'polkajam_interpreted',
+  // PolkaJam variations - polkajam (interpreted) becomes the main polkajam
+  'polkajam (interpreted)': 'polkajam',
+  'polkajam_interpreted': 'polkajam',
+  // The recompiler version maps to polkajam_recompiler
+  'polkajam': 'polkajam_recompiler',
+  'polkajam (recompiler)': 'polkajam_recompiler',
   
   // Team names with suffixes
   'jamzig-target': 'jamzig',

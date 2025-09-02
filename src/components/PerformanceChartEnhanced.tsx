@@ -23,13 +23,17 @@ export function PerformanceChartEnhanced({ teams, baseline, timestamp }: Perform
   const shouldUseLogScale = range > PERFORMANCE_CONFIG.visualization.logScaleThreshold;
   
   const getBarWidth = (value: number) => {
+    let width;
     if (shouldUseLogScale) {
       const logMax = Math.log10(maxValue);
       const logMin = Math.log10(minValue || 1);
       const logValue = Math.log10(value || 1);
-      return ((logValue - logMin) / (logMax - logMin)) * 100;
+      width = ((logValue - logMin) / (logMax - logMin)) * 100;
+    } else {
+      width = (value / maxValue) * 100;
     }
-    return (value / maxValue) * 100;
+    // Ensure minimum width of 2% so all bars are visible
+    return Math.max(2, width);
   };
 
   const getGradientByPerformance = (relative: number) => {
