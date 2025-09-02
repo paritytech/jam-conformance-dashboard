@@ -4,14 +4,14 @@
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
-    "url": "https://graypaper.com/clients/#polkajam"
+    "url": "https://graypaper.com/clients/#polkajam_interpreted"
   },
-  "polkajam_interpreted": {
-    "displayName": "PolkaJam (Interpreted)",
+  "polkajam_recompiler": {
+    "displayName": "PolkaJam (Recompiler)",
     "language": "Rust",
     "languageColor": "#dea584",
     "author": "Parity Technologies",
-    "url": "https://graypaper.com/clients/#polkajam_interpreted"
+    "url": "https://graypaper.com/clients/#polkajam"
   },
   "turbojam": {
     "displayName": "TurboJam",
