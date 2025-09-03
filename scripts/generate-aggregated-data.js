@@ -124,16 +124,42 @@ async function generateAggregatedData() {
       continue;
     }
     
-    // Use the fastest team as baseline
-    const [fastestTeamKey, baselineData] = sortedTeams[0];
-    const baseline = baselineData.info.name;
+    // Find polkajam (interpreted) to use as baseline
+    let baselineData = null;
+    let baseline = 'polkajam';
+    
+    // Look for polkajam_interpreted first
+    const polkajamInterpreted = sortedTeams.find(([key, data]) => 
+      key === 'polkajam_interpreted' || data.info.name === 'polkajam'
+    );
+    
+    if (polkajamInterpreted) {
+      baselineData = polkajamInterpreted[1];
+      baseline = 'polkajam';
+    } else {
+      // Fallback to fastest team if polkajam not found
+      console.warn(`  Warning: polkajam not found, using fastest team as baseline`);
+      const [fastestTeamKey, fastestData] = sortedTeams[0];
+      baselineData = fastestData;
+      baseline = fastestData.info.name;
+    }
     
     // Create the final aggregated data
     const teamsList = sortedTeams.map(([key, data], index) => {
-      const relativeToBaseline = data.score / baselineData.score;
+      // Calculate relative performance based on mean execution time, not score
+      const relativeToBaseline = data.metrics.mean / baselineData.metrics.mean;
       
       // Clean up the display name
       let displayName = data.info.name;
+      
+      // Special handling for polkajam teams
+      if (key === 'polkajam') {
+        displayName = 'polkajam (recompiler)';
+      } else if (key === 'polkajam_interpreted') {
+        displayName = 'polkajam';
+      }
+      
+      // Clean up other team names
       if (displayName.includes('-fuzzing-target')) {
         displayName = displayName.replace('-fuzzing-target', '');
       }

@@ -49,6 +49,10 @@ async function generateAllBenchmarksData() {
           if (fs.existsSync(perfPath)) {
             const content = fs.readFileSync(perfPath, 'utf-8');
             const data = JSON.parse(content);
+            // Special handling for polkajam: perf version is the recompiler
+            if (team === 'polkajam') {
+              data.info.name = 'polkajam (recompiler)';
+            }
             performanceData[team] = data;
           }
           
@@ -56,8 +60,14 @@ async function generateAllBenchmarksData() {
           if (fs.existsSync(perfIntPath)) {
             const content = fs.readFileSync(perfIntPath, 'utf-8');
             const data = JSON.parse(content);
-            data.info.name = `${data.info.name} (interpreted)`;
-            performanceData[`${team}_interpreted`] = data;
+            // For polkajam, the interpreted version is the main one
+            if (team === 'polkajam') {
+              // Don't add (interpreted) suffix for polkajam
+              performanceData[`${team}_interpreted`] = data;
+            } else {
+              data.info.name = `${data.info.name} (interpreted)`;
+              performanceData[`${team}_interpreted`] = data;
+            }
           }
         } catch (error) {
           console.error(`    Error loading data for ${team}:`, error.message);
@@ -80,9 +90,25 @@ async function generateAllBenchmarksData() {
         continue;
       }
       
-      // Use the fastest team as baseline
-      const [fastestTeamKey, baselineData] = sortedTeams[0];
-      const baseline = baselineData.info.name;
+      // Find polkajam (interpreted) to use as baseline
+      let baselineData = null;
+      let baseline = 'polkajam';
+      
+      // Look for polkajam_interpreted first
+      const polkajamInterpreted = Object.entries(performanceData).find(([key, data]) => 
+        key === 'polkajam_interpreted'
+      );
+      
+      if (polkajamInterpreted) {
+        baselineData = polkajamInterpreted[1];
+        baseline = 'polkajam';
+      } else {
+        // Fallback to fastest team if polkajam not found
+        console.warn(`    Warning: polkajam not found for ${benchmark}, using fastest team as baseline`);
+        const [fastestTeamKey, fastestData] = sortedTeams[0];
+        baselineData = fastestData;
+        baseline = fastestData.info.name;
+      }
       
       const teamsList = Object.entries(performanceData)
         .filter(([key, report]) => {
@@ -94,16 +120,20 @@ async function generateAllBenchmarksData() {
         .map(([key, report]) => {
           const relativeToBaseline = report.stats.import_mean / baselineData.stats.import_mean;
           
-          // Clean up the name for display
+          // Use the name we already set (which includes our polkajam naming)
           let displayName = report.info.name;
-          if (displayName.includes('-fuzzing-target')) {
-            displayName = displayName.replace('-fuzzing-target', '');
-          }
-          if (displayName.includes('-target')) {
-            displayName = displayName.replace('-target', '');
-          }
-          if (displayName.match(/-\d+\.\d+\.\d+/)) {
-            displayName = displayName.replace(/-\d+\.\d+\.\d+.*$/, '');
+          
+          // Only clean up non-polkajam team names
+          if (!displayName.includes('polkajam')) {
+            if (displayName.includes('-fuzzing-target')) {
+              displayName = displayName.replace('-fuzzing-target', '');
+            }
+            if (displayName.includes('-target')) {
+              displayName = displayName.replace('-target', '');
+            }
+            if (displayName.match(/-\d+\.\d+\.\d+/)) {
+              displayName = displayName.replace(/-\d+\.\d+\.\d+.*$/, '');
+            }
           }
           
           return {
