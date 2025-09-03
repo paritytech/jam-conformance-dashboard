@@ -87,7 +87,7 @@ export default function Home() {
                   <Info className="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" />
                   <div className="text-sm text-amber-100">
                     <p className="font-semibold mb-1">Important Note</p>
-                    <p>This leaderboard highlights performance discrepancies between JAM implementations. 
+                    <p>This leaderboard highlights performance differences between JAM implementations. 
                     All implementations are works in progress and none are fully conformant yet. 
                     The rankings serve to track relative performance improvements over time.</p>
                   </div>
