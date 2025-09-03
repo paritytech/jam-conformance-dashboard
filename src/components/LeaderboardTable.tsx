@@ -4,7 +4,7 @@ import { TeamPerformance } from '@/types/performance';
 import { formatRelativePerformance, getPerformanceColor, getPerformanceGradient } from '@/lib/performance-utils';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { Trophy, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { LanguageBadge } from './LanguageBadge';
 
 interface LeaderboardTableProps {
@@ -54,12 +54,7 @@ export function LeaderboardTable({ teams, baseline }: LeaderboardTableProps) {
                   className="border-b border-neutral-800/50 hover:bg-white/5 transition-colors"
                 >
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-2">
-                      {team.rank === 1 && <Trophy className="w-5 h-5 text-yellow-500" />}
-                      {team.rank === 2 && <Trophy className="w-5 h-5 text-slate-400" />}
-                      {team.rank === 3 && <Trophy className="w-5 h-5 text-amber-700" />}
-                      <span className="font-mono text-lg text-white">{team.rank}</span>
-                    </div>
+                    <span className="font-mono text-lg text-white">{team.rank}</span>
                   </td>
                   <td className="px-6 py-4">
                     <div className="font-medium text-white">
