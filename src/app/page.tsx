@@ -9,6 +9,7 @@ import { BenchmarkTabs } from '@/components/BenchmarkTabs';
 import { BenchmarkHeatmap } from '@/components/BenchmarkHeatmap';
 import { BenchmarkInfo } from '@/components/BenchmarkInfo';
 import { MethodologyExplainer } from '@/components/MethodologyExplainer';
+import { Info } from 'lucide-react';
 import allBenchmarksData from '@/data/all-benchmarks-data.json';
 import aggregatedData from '@/data/aggregated-data.json';
 import clientMetadata from '@/data/client-metadata.json';
@@ -80,6 +81,19 @@ export default function Home() {
           {!currentBenchmark || !hasBenchmarkData ? (
             /* Regular Overview - Default main leaderboard view */
             <>
+              {/* Info Box */}
+              <div className="mb-8 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <Info className="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm text-amber-100">
+                    <p className="font-semibold mb-1">Important Note</p>
+                    <p>This leaderboard highlights performance discrepancies between JAM implementations. 
+                    All implementations are works in progress and none are fully conformant yet. 
+                    The rankings serve to track relative performance improvements over time.</p>
+                  </div>
+                </div>
+              </div>
+
               {/* Performance Chart at the top */}
               <div className="mb-12">
                 <PerformanceChartEnhanced teams={enrichedTeams} baseline={overviewData.baseline} timestamp={overviewData.timestamp} />
