@@ -80,10 +80,11 @@ export function MethodologyExplainer({ methodology }: MethodologyExplainerProps)
           <div className="mt-4 p-3 bg-black/20 rounded-lg border border-white/5">
             <h4 className="text-sm font-semibold text-slate-300 mb-2">How it works:</h4>
             <ol className="space-y-1 text-xs text-slate-400">
-              <li>1. For each benchmark, we calculate a weighted score using the metrics above</li>
-              <li>2. We use geometric mean across all benchmarks to aggregate metrics</li>
-              <li>3. Teams are ranked by their final weighted score (lower is better)</li>
-              <li>4. The fastest team becomes the baseline (1.0x) for relative comparisons</li>
+              <li>1. Performance measurements are based on the public W3F test vector traces</li>
+              <li>2. For each benchmark, we calculate a weighted score using the metrics above</li>
+              <li>3. We use geometric mean across all benchmarks to aggregate metrics</li>
+              <li>4. Teams are ranked by their final weighted score (lower is better)</li>
+              <li>5. Polkajam (interpreted) serves as the baseline (1.0x) for relative comparisons</li>
             </ol>
           </div>
 

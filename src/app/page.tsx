@@ -7,6 +7,7 @@ import { PerformanceChartEnhanced } from '@/components/PerformanceChartEnhanced'
 import { VersionSelector } from '@/components/VersionSelector';
 import { BenchmarkTabs } from '@/components/BenchmarkTabs';
 import { BenchmarkHeatmap } from '@/components/BenchmarkHeatmap';
+import { BenchmarkInfo } from '@/components/BenchmarkInfo';
 import { MethodologyExplainer } from '@/components/MethodologyExplainer';
 import allBenchmarksData from '@/data/all-benchmarks-data.json';
 import aggregatedData from '@/data/aggregated-data.json';
@@ -111,6 +112,9 @@ export default function Home() {
           ) : (allBenchmarksData as any)[currentVersion]?.[currentBenchmark] ? (
             /* Individual Benchmark View */
             <>
+              {/* Benchmark Description */}
+              <BenchmarkInfo benchmark={currentBenchmark} />
+              
               {/* Performance Chart for specific benchmark */}
               <div className="mb-12">
                 <PerformanceChartEnhanced 

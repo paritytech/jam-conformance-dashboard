@@ -8,6 +8,12 @@ export const APP_CONFIG = {
       fallback: 'Fallback',
       storage: 'Storage',
       storage_light: 'Storage Light'
+    },
+    descriptions: {
+      safrole: 'Safrole block authoring, no work reports',
+      fallback: 'Fallback block authoring, no safrole, no work reports',
+      storage: 'No safrole, storage related reports (read/write). At most 5 storage-related work items per report.',
+      storage_light: 'No safrole, storage related reports (read/write). At most 1 storage-related work item per report.'
     }
   },
   
