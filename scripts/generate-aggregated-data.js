@@ -147,7 +147,7 @@ async function generateAggregatedData() {
     // Create the final aggregated data
     const teamsList = sortedTeams.map(([key, data], index) => {
       // Calculate relative performance based on mean execution time, not score
-      const relativeToBaseline = data.metrics.mean / baselineData.metrics.mean;
+      let relativeToBaseline = data.metrics.mean / baselineData.metrics.mean;
       
       // Clean up the display name
       let displayName = data.info.name;
@@ -157,6 +157,8 @@ async function generateAggregatedData() {
         displayName = 'polkajam (recompiler)';
       } else if (key === 'polkajam_interpreted') {
         displayName = 'polkajam';
+        // This is the actual baseline, so ensure it has relativeToBaseline = 1.0
+        relativeToBaseline = 1.0;
       }
       
       // Clean up other team names
@@ -183,7 +185,7 @@ async function generateAggregatedData() {
     
     aggregatedData[version] = {
       version,
-      baseline,
+      baseline: 'polkajam', // Always use 'polkajam' as baseline after renaming
       teams: teamsList,
       timestamp: Date.now(),
       methodology: {
