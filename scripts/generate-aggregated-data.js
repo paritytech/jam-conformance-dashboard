@@ -130,7 +130,7 @@ async function generateAggregatedData() {
     
     // Look for polkajam_interpreted first
     const polkajamInterpreted = sortedTeams.find(([key, data]) => 
-      key === 'polkajam_interpreted' || data.info.name === 'polkajam'
+      key === 'polkajam_interpreted'
     );
     
     if (polkajamInterpreted) {
@@ -157,8 +157,6 @@ async function generateAggregatedData() {
         displayName = 'polkajam (recompiler)';
       } else if (key === 'polkajam_interpreted') {
         displayName = 'polkajam';
-        // This is the actual baseline, so ensure it has relativeToBaseline = 1.0
-        relativeToBaseline = 1.0;
       }
       
       // Clean up other team names
