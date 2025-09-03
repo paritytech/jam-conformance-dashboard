@@ -82,11 +82,11 @@ export default function Home() {
             /* Regular Overview - Default main leaderboard view */
             <>
               {/* Info Box */}
-              <div className="mb-8 p-4 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-lg">
                 <div className="flex items-start gap-3">
-                  <Info className="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" />
-                  <div className="text-sm text-amber-100">
-                    <p className="font-semibold mb-1">Important Note</p>
+                  <Info className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm text-slate-300">
+                    <p className="font-semibold text-white mb-1">Important Note</p>
                     <p>This leaderboard highlights performance differences between JAM implementations. 
                     All implementations are works in progress and none are fully conformant yet. 
                     The rankings serve to track relative performance improvements over time.</p>
