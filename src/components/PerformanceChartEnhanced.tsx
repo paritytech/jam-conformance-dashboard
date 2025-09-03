@@ -64,7 +64,10 @@ export function PerformanceChartEnhanced({ teams, baseline, timestamp }: Perform
             </div>
             <div>
               <h3 className="text-2xl font-bold text-white">Performance Comparison</h3>
-              <p className="text-sm text-slate-400 mt-1">All implementations relative to {teams.find(t => t.name === baseline)?.metadata?.displayName || baseline}</p>
+              <p className="text-sm text-slate-400 mt-1">
+                All implementations relative to {teams.find(t => t.name === baseline)?.metadata?.displayName || baseline}
+                <span className="text-xs ml-2">(aggregate weighted scores - see methodology below)</span>
+              </p>
             </div>
           </div>
           
