@@ -14,10 +14,14 @@ const TEAM_NAME_MAPPINGS: Record<string, string> = {
   'tsjam-0.7.0-tiny': 'tsjam',
   'boka-fuzzing-target': 'boka',
   'vinwolf-target': 'vinwolf',
+  'duna-target': 'duna',
   
   // Hyphenated variations
   'jam-duna': 'jamduna',
   'jam-duna-target-0.7.0.3': 'jamduna',
+  
+  // Package-style names
+  '@typeberry/jam': 'typeberry',
 };
 
 /**

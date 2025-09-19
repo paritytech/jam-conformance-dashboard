@@ -55,6 +55,13 @@
     "author": "Community",
     "url": "https://graypaper.com/clients/#jamduna"
   },
+  "duna": {
+    "displayName": "JAM DUNA",
+    "language": "Go",
+    "languageColor": "#00add8",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#jamduna"
+  },
   "fastroll": {
     "displayName": "FastRoll",
     "language": "Rust",
@@ -103,5 +110,19 @@
     "languageColor": "#00add8",
     "author": "Community",
     "url": "https://graypaper.com/clients/#jamzilla"
+  },
+  "tessera": {
+    "displayName": "Tessera",
+    "language": "Python",
+    "languageColor": "#3572a5",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#tessera"
+  },
+  "typeberry": {
+    "displayName": "Typeberry",
+    "language": "TypeScript",
+    "languageColor": "#3178c6",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#typeberry"
   }
 }

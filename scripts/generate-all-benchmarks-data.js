@@ -51,7 +51,12 @@ async function generateAllBenchmarksData() {
             const data = JSON.parse(content);
             // Special handling for polkajam: perf version is the recompiler
             if (team === 'polkajam') {
-              data.info.name = 'polkajam (recompiler)';
+              // Handle both old and new format
+              if (data.info.app_name !== undefined) {
+                data.info.app_name = 'polkajam (recompiler)';
+              } else if (data.info.name !== undefined) {
+                data.info.name = 'polkajam (recompiler)';
+              }
             }
             performanceData[team] = data;
           }
@@ -65,7 +70,13 @@ async function generateAllBenchmarksData() {
               // Don't add (interpreted) suffix for polkajam
               performanceData[`${team}_interpreted`] = data;
             } else {
-              data.info.name = `${data.info.name} (interpreted)`;
+              // Handle both old and new format
+              const teamName = data.info.app_name || data.info.name || team;
+              if (data.info.app_name !== undefined) {
+                data.info.app_name = `${teamName} (interpreted)`;
+              } else if (data.info.name !== undefined) {
+                data.info.name = `${teamName} (interpreted)`;
+              }
               performanceData[`${team}_interpreted`] = data;
             }
           }
@@ -107,7 +118,7 @@ async function generateAllBenchmarksData() {
         console.warn(`    Warning: polkajam not found for ${benchmark}, using fastest team as baseline`);
         const [fastestTeamKey, fastestData] = sortedTeams[0];
         baselineData = fastestData;
-        baseline = fastestData.info.name;
+        baseline = fastestData.info.app_name || fastestData.info.name;
       }
       
       const teamsList = Object.entries(performanceData)
@@ -121,7 +132,7 @@ async function generateAllBenchmarksData() {
           const relativeToBaseline = report.stats.import_mean / baselineData.stats.import_mean;
           
           // Use the name we already set (which includes our polkajam naming)
-          let displayName = report.info.name;
+          let displayName = report.info.app_name || report.info.name || 'unknown';
           
           // Only clean up non-polkajam team names
           if (!displayName.includes('polkajam')) {
@@ -138,7 +149,7 @@ async function generateAllBenchmarksData() {
           
           return {
             name: displayName,
-            originalName: report.info.name,
+            originalName: report.info.app_name || report.info.name || 'unknown',
             metrics: {
               mean: report.stats.import_mean,
               p50: report.stats.import_p50,

@@ -150,7 +150,7 @@ async function generateAggregatedData() {
       let relativeToBaseline = data.metrics.mean / baselineData.metrics.mean;
       
       // Clean up the display name
-      let displayName = data.info.name;
+      let displayName = data.info.app_name || data.info.name || 'unknown';
       
       // Special handling for polkajam teams
       if (key === 'polkajam') {
@@ -172,7 +172,7 @@ async function generateAggregatedData() {
       
       return {
         name: displayName,
-        originalName: data.info.name,
+        originalName: data.info.app_name || data.info.name || 'unknown',
         metrics: data.metrics,
         score: data.score,
         relativeToBaseline,
