@@ -42,9 +42,10 @@ function captureSourceInfo() {
     }
   } else {
     console.warn('temp-jam-conformance directory not found. Running locally?');
-    // Try to get info from parent directory if fuzz-reports exists
+    // Try to get info from parent directory if fuzz-perf or fuzz-reports exists
+    const fuzzPerfPath = path.join(process.cwd(), '..', 'fuzz-perf');
     const fuzzReportsPath = path.join(process.cwd(), '..', 'fuzz-reports');
-    if (fs.existsSync(fuzzReportsPath)) {
+    if (fs.existsSync(fuzzPerfPath) || fs.existsSync(fuzzReportsPath)) {
       const parentGitInfo = getGitInfo(path.join(process.cwd(), '..'));
       if (parentGitInfo) {
         sourceInfo.source = parentGitInfo;

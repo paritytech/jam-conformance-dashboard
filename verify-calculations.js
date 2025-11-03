@@ -88,22 +88,27 @@ console.log('');
 // 6. Cross-check with source data
 console.log('6. SOURCE DATA VERIFICATION');
 const version = performanceData.version;
-const sourceDataPath = path.join(__dirname, '..', '..', 'fuzz-reports', version, 'reports');
+
+// Try fuzz-perf first, then fallback to fuzz-reports
+let sourceDataPath = path.join(__dirname, '..', '..', 'fuzz-perf', version);
+if (!fs.existsSync(sourceDataPath)) {
+  sourceDataPath = path.join(__dirname, '..', '..', 'fuzz-reports', version);
+}
 
 // Check a few teams against source
-const teamsToCheck = ['jampy', 'turbojam', 'polkajam'];
+const teamsToCheck = ['jampy', 'turbojam', 'polkajam', 'polkajam_int'];
 teamsToCheck.forEach(teamName => {
   try {
-    const perfPath = path.join(sourceDataPath, teamName, 'perf', 'safrole.json');
-    const perfIntPath = path.join(sourceDataPath, teamName, 'perf_int', 'safrole.json');
-    
+    const benchmarkPath = path.join(sourceDataPath, teamName, 'safrole.json');
+
     let sourceData;
-    if (fs.existsSync(perfIntPath) && teamName === 'polkajam') {
-      sourceData = JSON.parse(fs.readFileSync(perfIntPath, 'utf-8'));
-      console.log(`${teamName} (interpreted):`);
-    } else if (fs.existsSync(perfPath)) {
-      sourceData = JSON.parse(fs.readFileSync(perfPath, 'utf-8'));
-      console.log(`${teamName}:`);
+    if (fs.existsSync(benchmarkPath)) {
+      sourceData = JSON.parse(fs.readFileSync(benchmarkPath, 'utf-8'));
+      if (teamName === 'polkajam_int') {
+        console.log(`polkajam (interpreted):`);
+      } else {
+        console.log(`${teamName}:`);
+      }
     }
     
     if (sourceData) {

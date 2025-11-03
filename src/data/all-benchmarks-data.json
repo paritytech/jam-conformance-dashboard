@@ -1,0 +1,1177 @@
+{
+  "0.7.0": {
+    "safrole": {
+      "version": "0.7.0",
+      "benchmark": "safrole",
+      "baseline": "polkajam",
+      "teams": [
+        {
+          "name": "polkajam (recompiler)",
+          "originalName": "polkajam (recompiler)",
+          "metrics": {
+            "mean": 7.8811389599999995,
+            "p50": 7.366,
+            "p90": 17.932,
+            "p99": 19.395,
+            "max": 19.751769,
+            "min": 0.909635,
+            "stdDev": 6.666438131837047
+          },
+          "relativeToBaseline": 0.9747102846276501,
+          "rank": 1
+        },
+        {
+          "name": "polkajam",
+          "originalName": "polkajam",
+          "metrics": {
+            "mean": 8.085622039999999,
+            "p50": 7.568,
+            "p90": 18.265,
+            "p99": 19.475,
+            "max": 19.671273,
+            "min": 0.908967,
+            "stdDev": 6.8312404635091335
+          },
+          "relativeToBaseline": 1,
+          "rank": 2
+        },
+        {
+          "name": "spacejam",
+          "originalName": "spacejam",
+          "metrics": {
+            "mean": 8.276576310000003,
+            "p50": 7.831,
+            "p90": 19.337,
+            "p99": 19.653,
+            "max": 19.731284000000002,
+            "min": 1.4643410000000001,
+            "stdDev": 6.712426852617113
+          },
+          "relativeToBaseline": 1.0236165219021298,
+          "rank": 3
+        },
+        {
+          "name": "JavaJAM",
+          "originalName": "JavaJAM",
+          "metrics": {
+            "mean": 9.170021000000004,
+            "p50": 8.02,
+            "p90": 21.241,
+            "p99": 23.242,
+            "max": 23.675330000000002,
+            "min": 0.9844579999999999,
+            "stdDev": 7.889860996946658
+          },
+          "relativeToBaseline": 1.1341144756254282,
+          "rank": 4
+        },
+        {
+          "name": "duna",
+          "originalName": "duna-target",
+          "metrics": {
+            "mean": 10.106080180000001,
+            "p50": 8.752,
+            "p90": 21.53,
+            "p99": 23.053,
+            "max": 27.960046,
+            "min": 1.9328990000000001,
+            "stdDev": 7.664647942969819
+          },
+          "relativeToBaseline": 1.2498828327622402,
+          "rank": 5
+        },
+        {
+          "name": "jamzilla",
+          "originalName": "jamzilla",
+          "metrics": {
+            "mean": 10.90227579,
+            "p50": 9.572,
+            "p90": 25.737,
+            "p99": 27.875,
+            "max": 29.873771,
+            "min": 0,
+            "stdDev": 9.656427735952446
+          },
+          "relativeToBaseline": 1.348353377892989,
+          "rank": 6
+        },
+        {
+          "name": "turbojam",
+          "originalName": "turbojam",
+          "metrics": {
+            "mean": 11.176784089999998,
+            "p50": 9.939,
+            "p90": 26.552,
+            "p99": 27.898,
+            "max": 29.046111,
+            "min": 1.212243,
+            "stdDev": 9.735254922453096
+          },
+          "relativeToBaseline": 1.3823035549655744,
+          "rank": 7
+        },
+        {
+          "name": "Jamixir",
+          "originalName": "Jamixir",
+          "metrics": {
+            "mean": 11.888681989999997,
+            "p50": 10.925,
+            "p90": 25.866,
+            "p99": 26.219,
+            "max": 29.489556999999998,
+            "min": 2.476866,
+            "stdDev": 8.724725837296198
+          },
+          "relativeToBaseline": 1.4703484693182614,
+          "rank": 8
+        },
+        {
+          "name": "FastRoll",
+          "originalName": "FastRoll",
+          "metrics": {
+            "mean": 19.264995149999997,
+            "p50": 12.493,
+            "p90": 36.992,
+            "p99": 61.867,
+            "max": 62.16749,
+            "min": 2.1356990000000002,
+            "stdDev": 17.340005433182935
+          },
+          "relativeToBaseline": 2.382623755438363,
+          "rank": 9
+        },
+        {
+          "name": "vinwolf",
+          "originalName": "vinwolf-target",
+          "metrics": {
+            "mean": 19.477534339999995,
+            "p50": 12.35,
+            "p90": 25.071,
+            "p99": 111.355,
+            "max": 111.416701,
+            "min": 2.1172690000000003,
+            "stdDev": 28.25732406394536
+          },
+          "relativeToBaseline": 2.4089098208701327,
+          "rank": 10
+        },
+        {
+          "name": "strawberry",
+          "originalName": "strawberry",
+          "metrics": {
+            "mean": 21.348447209999996,
+            "p50": 17.799,
+            "p90": 33.178,
+            "p99": 66.198,
+            "max": 68.685355,
+            "min": 5.4096329999999995,
+            "stdDev": 16.40087424974587
+          },
+          "relativeToBaseline": 2.6402974445736027,
+          "rank": 11
+        },
+        {
+          "name": "jamzig",
+          "originalName": "jamzig-target",
+          "metrics": {
+            "mean": 22.74879861999999,
+            "p50": 13.82,
+            "p90": 34.886,
+            "p99": 115.901,
+            "max": 122.564598,
+            "min": 1.3442230000000002,
+            "stdDev": 28.706723479231147
+          },
+          "relativeToBaseline": 2.8134877573377146,
+          "rank": 12
+        },
+        {
+          "name": "tsjam",
+          "originalName": "tsjam-0.7.0-tiny-f5cf7082",
+          "metrics": {
+            "mean": 24.313657879999994,
+            "p50": 23.752,
+            "p90": 42.297,
+            "p99": 67.4,
+            "max": 71.134649,
+            "min": 3.942836,
+            "stdDev": 18.091343355630066
+          },
+          "relativeToBaseline": 3.0070237960319,
+          "rank": 13
+        },
+        {
+          "name": "boka",
+          "originalName": "boka-fuzzing-target",
+          "metrics": {
+            "mean": 27.6123468,
+            "p50": 18.698,
+            "p90": 40.058,
+            "p99": 122.074,
+            "max": 126.09727400000001,
+            "min": 6.105969999999999,
+            "stdDev": 28.795828841475384
+          },
+          "relativeToBaseline": 3.414993511123852,
+          "rank": 14
+        },
+        {
+          "name": "gossamer-jam",
+          "originalName": "gossamer-jam",
+          "metrics": {
+            "mean": 48.75783239000001,
+            "p50": 68.838,
+            "p90": 83.32,
+            "p99": 85.57,
+            "max": 86.348916,
+            "min": 0,
+            "stdDev": 36.14504289296065
+          },
+          "relativeToBaseline": 6.0301894089029195,
+          "rank": 15
+        },
+        {
+          "name": "jampy",
+          "originalName": "jampy",
+          "metrics": {
+            "mean": 66.63261290999998,
+            "p50": 53.918,
+            "p90": 146.16,
+            "p99": 152,
+            "max": 156.14440399999998,
+            "min": 10.202602,
+            "stdDev": 51.80375528327015
+          },
+          "relativeToBaseline": 8.240876531250771,
+          "rank": 16
+        },
+        {
+          "name": "tessera",
+          "originalName": "tessera-target",
+          "metrics": {
+            "mean": 93.47183379,
+            "p50": 84.173,
+            "p90": 226.724,
+            "p99": 228.273,
+            "max": 228.45470600000002,
+            "min": 11.759797,
+            "stdDev": 79.83209367487868
+          },
+          "relativeToBaseline": 11.560252671667055,
+          "rank": 17
+        },
+        {
+          "name": "@typeberry/jam",
+          "originalName": "@typeberry/jam",
+          "metrics": {
+            "mean": 107.55364344999998,
+            "p50": 86.936,
+            "p90": 157.394,
+            "p99": 412.44,
+            "max": 435.13319099999995,
+            "min": 16.716196,
+            "stdDev": 98.94473475891184
+          },
+          "relativeToBaseline": 13.301839106246426,
+          "rank": 18
+        },
+        {
+          "name": "PyJAMaz",
+          "originalName": "PyJAMaz",
+          "metrics": {
+            "mean": 108.74170999,
+            "p50": 150.888,
+            "p90": 176.382,
+            "p99": 196.564,
+            "max": 226.667279,
+            "min": 7.464968,
+            "stdDev": 74.89333869389938
+          },
+          "relativeToBaseline": 13.44877480694114,
+          "rank": 19
+        }
+      ],
+      "timestamp": 1762174434479
+    },
+    "fallback": {
+      "version": "0.7.0",
+      "benchmark": "fallback",
+      "baseline": "polkajam",
+      "teams": [
+        {
+          "name": "polkajam (recompiler)",
+          "originalName": "polkajam (recompiler)",
+          "metrics": {
+            "mean": 0.9918784799999999,
+            "p50": 0.947,
+            "p90": 1.11,
+            "p99": 1.273,
+            "max": 1.396979,
+            "min": 0.862414,
+            "stdDev": 0.10731167986130939
+          },
+          "relativeToBaseline": 0.9624494794028964,
+          "rank": 1
+        },
+        {
+          "name": "polkajam",
+          "originalName": "polkajam",
+          "metrics": {
+            "mean": 1.03057719,
+            "p50": 0.983,
+            "p90": 1.166,
+            "p99": 1.301,
+            "max": 1.48831,
+            "min": 0.872858,
+            "stdDev": 0.12086167795306418
+          },
+          "relativeToBaseline": 1,
+          "rank": 2
+        },
+        {
+          "name": "JavaJAM",
+          "originalName": "JavaJAM",
+          "metrics": {
+            "mean": 1.3437695900000002,
+            "p50": 1.162,
+            "p90": 1.55,
+            "p99": 4.198,
+            "max": 4.934321000000001,
+            "min": 0.979388,
+            "stdDev": 0.6649228259868095
+          },
+          "relativeToBaseline": 1.3038999921975762,
+          "rank": 3
+        },
+        {
+          "name": "turbojam",
+          "originalName": "turbojam",
+          "metrics": {
+            "mean": 1.4751871400000003,
+            "p50": 1.294,
+            "p90": 1.616,
+            "p99": 1.658,
+            "max": 11.313087,
+            "min": 1.17419,
+            "stdDev": 1.004743686864426
+          },
+          "relativeToBaseline": 1.4314183879812052,
+          "rank": 4
+        },
+        {
+          "name": "spacejam",
+          "originalName": "spacejam",
+          "metrics": {
+            "mean": 1.5503805800000003,
+            "p50": 1.538,
+            "p90": 1.583,
+            "p99": 1.628,
+            "max": 2.0753730000000004,
+            "min": 1.48475,
+            "stdDev": 0.06788444726718583
+          },
+          "relativeToBaseline": 1.5043808411866755,
+          "rank": 5
+        },
+        {
+          "name": "jamzilla",
+          "originalName": "jamzilla",
+          "metrics": {
+            "mean": 1.9207807999999997,
+            "p50": 1.202,
+            "p90": 1.822,
+            "p99": 5.1,
+            "max": 61.871843000000005,
+            "min": 0.49935500000000005,
+            "stdDev": 6.136095359522543
+          },
+          "relativeToBaseline": 1.863791299320335,
+          "rank": 6
+        },
+        {
+          "name": "duna",
+          "originalName": "duna-target",
+          "metrics": {
+            "mean": 2.8294412799999984,
+            "p50": 2.305,
+            "p90": 4.56,
+            "p99": 8.545,
+            "max": 8.735420000000001,
+            "min": 1.943911,
+            "stdDev": 1.560044018143551
+          },
+          "relativeToBaseline": 2.7454918539386637,
+          "rank": 7
+        },
+        {
+          "name": "Jamixir",
+          "originalName": "Jamixir",
+          "metrics": {
+            "mean": 4.40800034,
+            "p50": 3.214,
+            "p90": 3.653,
+            "p99": 7.861,
+            "max": 58.292531000000004,
+            "min": 2.735644,
+            "stdDev": 7.704035561067756
+          },
+          "relativeToBaseline": 4.27721512058694,
+          "rank": 8
+        },
+        {
+          "name": "gossamer-jam",
+          "originalName": "gossamer-jam",
+          "metrics": {
+            "mean": 5.11678675,
+            "p50": 0.093,
+            "p90": 2.138,
+            "p99": 61.398,
+            "max": 61.636501,
+            "min": 0.035846,
+            "stdDev": 16.561008051738426
+          },
+          "relativeToBaseline": 4.964971862030053,
+          "rank": 9
+        },
+        {
+          "name": "FastRoll",
+          "originalName": "FastRoll",
+          "metrics": {
+            "mean": 7.282514330000002,
+            "p50": 2.668,
+            "p90": 2.797,
+            "p99": 61.91,
+            "max": 64.38073800000001,
+            "min": 2.1200289999999997,
+            "stdDev": 16.213896408449134
+          },
+          "relativeToBaseline": 7.066442378760588,
+          "rank": 10
+        },
+        {
+          "name": "jamzig",
+          "originalName": "jamzig-target",
+          "metrics": {
+            "mean": 10.285094300000003,
+            "p50": 1.377,
+            "p90": 1.413,
+            "p99": 118.099,
+            "max": 130.51183,
+            "min": 1.309186,
+            "stdDev": 30.488896896967848
+          },
+          "relativeToBaseline": 9.979935903685199,
+          "rank": 11
+        },
+        {
+          "name": "vinwolf",
+          "originalName": "vinwolf-target",
+          "metrics": {
+            "mean": 11.067009030000001,
+            "p50": 2.193,
+            "p90": 2.819,
+            "p99": 111.392,
+            "max": 119.014439,
+            "min": 2.0877719999999997,
+            "stdDev": 29.893927244536126
+          },
+          "relativeToBaseline": 10.73865125037359,
+          "rank": 12
+        },
+        {
+          "name": "strawberry",
+          "originalName": "strawberry",
+          "metrics": {
+            "mean": 11.21807265,
+            "p50": 5.875,
+            "p90": 9.953,
+            "p99": 66.049,
+            "max": 69.79509,
+            "min": 5.226032,
+            "stdDev": 16.377601350466243
+          },
+          "relativeToBaseline": 10.885232817931861,
+          "rank": 13
+        },
+        {
+          "name": "tsjam",
+          "originalName": "tsjam-0.7.0-tiny-f5cf7082",
+          "metrics": {
+            "mean": 12.12127381,
+            "p50": 6.478,
+            "p90": 13.448,
+            "p99": 71.202,
+            "max": 91.260127,
+            "min": 4.034262,
+            "stdDev": 18.157702145913227
+          },
+          "relativeToBaseline": 11.761636030387981,
+          "rank": 14
+        },
+        {
+          "name": "tessera",
+          "originalName": "tessera-target",
+          "metrics": {
+            "mean": 12.586672079999998,
+            "p50": 11.896,
+            "p90": 13.089,
+            "p99": 15.407,
+            "max": 41.966392,
+            "min": 10.953211,
+            "stdDev": 3.4386944786343987
+          },
+          "relativeToBaseline": 12.213225949625372,
+          "rank": 15
+        },
+        {
+          "name": "jampy",
+          "originalName": "jampy",
+          "metrics": {
+            "mean": 14.811402479999996,
+            "p50": 12.26,
+            "p90": 12.577,
+            "p99": 17.838,
+            "max": 171.038499,
+            "min": 9.574462,
+            "stdDev": 19.05386897481348
+          },
+          "relativeToBaseline": 14.371948674703344,
+          "rank": 16
+        },
+        {
+          "name": "boka",
+          "originalName": "boka-fuzzing-target",
+          "metrics": {
+            "mean": 16.40262183,
+            "p50": 6.751,
+            "p90": 7.147,
+            "p99": 128.583,
+            "max": 145.65007699999998,
+            "min": 5.99137,
+            "stdDev": 32.81145626852989
+          },
+          "relativeToBaseline": 15.915956600980078,
+          "rank": 17
+        },
+        {
+          "name": "PyJAMaz",
+          "originalName": "PyJAMaz",
+          "metrics": {
+            "mean": 18.356778830000003,
+            "p50": 7.751,
+            "p90": 8.678,
+            "p99": 151.862,
+            "max": 158.72556600000001,
+            "min": 7.4592160000000005,
+            "stdDev": 35.78807528191423
+          },
+          "relativeToBaseline": 17.812133829587285,
+          "rank": 18
+        },
+        {
+          "name": "@typeberry/jam",
+          "originalName": "@typeberry/jam",
+          "metrics": {
+            "mean": 53.80578191999999,
+            "p50": 20.979,
+            "p90": 48.956,
+            "p99": 397.47,
+            "max": 450.484465,
+            "min": 17.567959000000002,
+            "stdDev": 103.23447832726677
+          },
+          "relativeToBaseline": 52.20936620962859,
+          "rank": 19
+        }
+      ],
+      "timestamp": 1762174434480
+    },
+    "storage": {
+      "version": "0.7.0",
+      "benchmark": "storage",
+      "baseline": "polkajam",
+      "teams": [
+        {
+          "name": "polkajam (recompiler)",
+          "originalName": "polkajam (recompiler)",
+          "metrics": {
+            "mean": 1.9197642400000001,
+            "p50": 1.798,
+            "p90": 2.73,
+            "p99": 3.272,
+            "max": 3.488472,
+            "min": 1.061986,
+            "stdDev": 0.6219909946900986
+          },
+          "relativeToBaseline": 0.43818050571153755,
+          "rank": 1
+        },
+        {
+          "name": "spacejam",
+          "originalName": "spacejam",
+          "metrics": {
+            "mean": 2.6715211900000004,
+            "p50": 2.454,
+            "p90": 3.151,
+            "p99": 3.722,
+            "max": 23.473126,
+            "min": 1.717145,
+            "stdDev": 2.1659530253129446
+          },
+          "relativeToBaseline": 0.6097668045182927,
+          "rank": 2
+        },
+        {
+          "name": "polkajam",
+          "originalName": "polkajam",
+          "metrics": {
+            "mean": 4.38121782,
+            "p50": 3.488,
+            "p90": 8.316,
+            "p99": 11.34,
+            "max": 12.50059,
+            "min": 1.052696,
+            "stdDev": 3.10741887998154
+          },
+          "relativeToBaseline": 1,
+          "rank": 3
+        },
+        {
+          "name": "duna",
+          "originalName": "duna-target",
+          "metrics": {
+            "mean": 8.724362580000001,
+            "p50": 6.955,
+            "p90": 14.978,
+            "p99": 26.72,
+            "max": 29.907406,
+            "min": 2.585651,
+            "stdDev": 6.108597578117981
+          },
+          "relativeToBaseline": 1.991309936742657,
+          "rank": 4
+        },
+        {
+          "name": "turbojam",
+          "originalName": "turbojam",
+          "metrics": {
+            "mean": 9.582218659999999,
+            "p50": 5.828,
+            "p90": 20.11,
+            "p99": 31.65,
+            "max": 33.316889,
+            "min": 1.469916,
+            "stdDev": 8.433894268079436
+          },
+          "relativeToBaseline": 2.1871130479424554,
+          "rank": 5
+        },
+        {
+          "name": "JavaJAM",
+          "originalName": "JavaJAM",
+          "metrics": {
+            "mean": 13.564925559999999,
+            "p50": 9.698,
+            "p90": 30.167,
+            "p99": 42.665,
+            "max": 63.92896100000001,
+            "min": 1.647832,
+            "stdDev": 12.303983610224536
+          },
+          "relativeToBaseline": 3.0961541099547523,
+          "rank": 6
+        },
+        {
+          "name": "jamzilla",
+          "originalName": "jamzilla",
+          "metrics": {
+            "mean": 14.28254012,
+            "p50": 11.617,
+            "p90": 31.208,
+            "p99": 40.875,
+            "max": 55.627922000000005,
+            "min": 0.823085,
+            "stdDev": 13.35480857163404
+          },
+          "relativeToBaseline": 3.2599475092977688,
+          "rank": 7
+        },
+        {
+          "name": "vinwolf",
+          "originalName": "vinwolf-target",
+          "metrics": {
+            "mean": 24.903007880000004,
+            "p50": 15.896,
+            "p90": 50.063,
+            "p99": 114.86,
+            "max": 151.33582900000002,
+            "min": 2.369743,
+            "stdDev": 31.81708376362941
+          },
+          "relativeToBaseline": 5.684037841332437,
+          "rank": 8
+        },
+        {
+          "name": "jamzig",
+          "originalName": "jamzig-target",
+          "metrics": {
+            "mean": 27.92482558,
+            "p50": 17.019,
+            "p90": 52.827,
+            "p99": 161.967,
+            "max": 183.397805,
+            "min": 1.666029,
+            "stdDev": 39.75400668296525
+          },
+          "relativeToBaseline": 6.3737587874596935,
+          "rank": 9
+        },
+        {
+          "name": "FastRoll",
+          "originalName": "FastRoll",
+          "metrics": {
+            "mean": 28.8516414,
+            "p50": 23.659,
+            "p90": 62.607,
+            "p99": 91.671,
+            "max": 124.292449,
+            "min": 2.29221,
+            "stdDev": 27.170049450078444
+          },
+          "relativeToBaseline": 6.585301755209239,
+          "rank": 10
+        },
+        {
+          "name": "boka",
+          "originalName": "boka-fuzzing-target",
+          "metrics": {
+            "mean": 116.31412318,
+            "p50": 104.492,
+            "p90": 257.332,
+            "p99": 395.388,
+            "max": 432.932728,
+            "min": 7.324459,
+            "stdDev": 109.75024980300438
+          },
+          "relativeToBaseline": 26.548354352306546,
+          "rank": 11
+        },
+        {
+          "name": "tsjam",
+          "originalName": "tsjam-0.7.0-tiny-f5cf7082",
+          "metrics": {
+            "mean": 152.35739681999996,
+            "p50": 94.642,
+            "p90": 348.651,
+            "p99": 490.376,
+            "max": 586.0326729999999,
+            "min": 5.339644,
+            "stdDev": 149.35640256551133
+          },
+          "relativeToBaseline": 34.775124880688985,
+          "rank": 12
+        },
+        {
+          "name": "tessera",
+          "originalName": "tessera-target",
+          "metrics": {
+            "mean": 166.57234308,
+            "p50": 121.023,
+            "p90": 334.661,
+            "p99": 465.849,
+            "max": 582.120608,
+            "min": 18.655624999999997,
+            "stdDev": 139.10000857481896
+          },
+          "relativeToBaseline": 38.01964429150432,
+          "rank": 13
+        },
+        {
+          "name": "@typeberry/jam",
+          "originalName": "@typeberry/jam",
+          "metrics": {
+            "mean": 238.61677178999997,
+            "p50": 200.977,
+            "p90": 522.303,
+            "p99": 750.434,
+            "max": 896.18449,
+            "min": 19.449036,
+            "stdDev": 210.46922250699285
+          },
+          "relativeToBaseline": 54.46357190932817,
+          "rank": 14
+        },
+        {
+          "name": "jampy",
+          "originalName": "jampy",
+          "metrics": {
+            "mean": 433.7073482799999,
+            "p50": 188.743,
+            "p90": 1059.515,
+            "p99": 1509.914,
+            "max": 1810.59003,
+            "min": 11.952565,
+            "stdDev": 468.65502896598775
+          },
+          "relativeToBaseline": 98.99241856913655,
+          "rank": 15
+        },
+        {
+          "name": "Jamixir",
+          "originalName": "Jamixir",
+          "metrics": {
+            "mean": 530.2285852599999,
+            "p50": 225.489,
+            "p90": 1306.267,
+            "p99": 1973.427,
+            "max": 2257.3232270000003,
+            "min": 3.679941,
+            "stdDev": 598.2230877915975
+          },
+          "relativeToBaseline": 121.0231052287649,
+          "rank": 16
+        },
+        {
+          "name": "PyJAMaz",
+          "originalName": "PyJAMaz",
+          "metrics": {
+            "mean": 645.8621734999998,
+            "p50": 300.949,
+            "p90": 1509.273,
+            "p99": 2331.621,
+            "max": 2633.1721850000004,
+            "min": 9.438399,
+            "stdDev": 695.4830018248333
+          },
+          "relativeToBaseline": 147.4161294952461,
+          "rank": 17
+        },
+        {
+          "name": "strawberry",
+          "originalName": "strawberry",
+          "metrics": {
+            "mean": 1132.5436623399999,
+            "p50": 505.027,
+            "p90": 2697.177,
+            "p99": 4185.53,
+            "max": 4836.440481000001,
+            "min": 6.620304,
+            "stdDev": 1267.36319783596
+          },
+          "relativeToBaseline": 258.4997388557139,
+          "rank": 18
+        },
+        {
+          "name": "gossamer-jam",
+          "originalName": "gossamer-jam",
+          "metrics": {
+            "mean": 1802.4843669099994,
+            "p50": 792.067,
+            "p90": 4447.479,
+            "p99": 6440.436,
+            "max": 8066.218054,
+            "min": 0.33376,
+            "stdDev": 2053.776627152829
+          },
+          "relativeToBaseline": 411.4117218006749,
+          "rank": 19
+        }
+      ],
+      "timestamp": 1762174434482
+    },
+    "storage_light": {
+      "version": "0.7.0",
+      "benchmark": "storage_light",
+      "baseline": "polkajam",
+      "teams": [
+        {
+          "name": "polkajam (recompiler)",
+          "originalName": "polkajam (recompiler)",
+          "metrics": {
+            "mean": 1.5736460600000002,
+            "p50": 1.541,
+            "p90": 1.998,
+            "p99": 2.265,
+            "max": 3.0252730000000003,
+            "min": 1.021619,
+            "stdDev": 0.35835000879445544
+          },
+          "relativeToBaseline": 0.5638875295171396,
+          "rank": 1
+        },
+        {
+          "name": "spacejam",
+          "originalName": "spacejam",
+          "metrics": {
+            "mean": 2.24535126,
+            "p50": 2.284,
+            "p90": 2.657,
+            "p99": 2.762,
+            "max": 2.9687680000000003,
+            "min": 1.71951,
+            "stdDev": 0.3170870087451739
+          },
+          "relativeToBaseline": 0.8045809074116683,
+          "rank": 2
+        },
+        {
+          "name": "polkajam",
+          "originalName": "polkajam",
+          "metrics": {
+            "mean": 2.7907091,
+            "p50": 2.898,
+            "p90": 4.931,
+            "p99": 5.816,
+            "max": 5.852829000000001,
+            "min": 1.01312,
+            "stdDev": 1.445332258603994
+          },
+          "relativeToBaseline": 1,
+          "rank": 3
+        },
+        {
+          "name": "turbojam",
+          "originalName": "turbojam",
+          "metrics": {
+            "mean": 4.592625099999999,
+            "p50": 3.896,
+            "p90": 9.296,
+            "p99": 11.636,
+            "max": 12.365794,
+            "min": 1.508951,
+            "stdDev": 3.0299312304921315
+          },
+          "relativeToBaseline": 1.6456839231290712,
+          "rank": 4
+        },
+        {
+          "name": "duna",
+          "originalName": "duna-target",
+          "metrics": {
+            "mean": 6.1658587,
+            "p50": 4.998,
+            "p90": 10.712,
+            "p99": 17.623,
+            "max": 19.073968999999998,
+            "min": 2.5203539999999998,
+            "stdDev": 3.894456145325564
+          },
+          "relativeToBaseline": 2.2094236550846524,
+          "rank": 5
+        },
+        {
+          "name": "jamzilla",
+          "originalName": "jamzilla",
+          "metrics": {
+            "mean": 7.603196079999999,
+            "p50": 5.546,
+            "p90": 16.324,
+            "p99": 24.236,
+            "max": 26.293352,
+            "min": 0.8174239999999999,
+            "stdDev": 6.8173902440766305
+          },
+          "relativeToBaseline": 2.724467440909552,
+          "rank": 6
+        },
+        {
+          "name": "JavaJAM",
+          "originalName": "JavaJAM",
+          "metrics": {
+            "mean": 7.755411859999999,
+            "p50": 6.155,
+            "p90": 13.427,
+            "p99": 22.729,
+            "max": 25.969523000000002,
+            "min": 1.549514,
+            "stdDev": 5.852652059391653
+          },
+          "relativeToBaseline": 2.779011205431623,
+          "rank": 7
+        },
+        {
+          "name": "FastRoll",
+          "originalName": "FastRoll",
+          "metrics": {
+            "mean": 15.082443569999999,
+            "p50": 10.036,
+            "p90": 29.241,
+            "p99": 67.262,
+            "max": 87.75771,
+            "min": 2.356182,
+            "stdDev": 17.91164941114588
+          },
+          "relativeToBaseline": 5.404520152243743,
+          "rank": 8
+        },
+        {
+          "name": "vinwolf",
+          "originalName": "vinwolf-target",
+          "metrics": {
+            "mean": 16.38976023,
+            "p50": 7.628,
+            "p90": 19.206,
+            "p99": 115.342,
+            "max": 128.54782,
+            "min": 2.48751,
+            "stdDev": 30.05033284327416
+          },
+          "relativeToBaseline": 5.872973370818191,
+          "rank": 9
+        },
+        {
+          "name": "jamzig",
+          "originalName": "jamzig-target",
+          "metrics": {
+            "mean": 16.682272210000004,
+            "p50": 7.024,
+            "p90": 20.283,
+            "p99": 129.722,
+            "max": 156.989152,
+            "min": 1.68221,
+            "stdDev": 32.59488325566942
+          },
+          "relativeToBaseline": 5.977789734515864,
+          "rank": 10
+        },
+        {
+          "name": "boka",
+          "originalName": "boka-fuzzing-target",
+          "metrics": {
+            "mean": 51.70110192999999,
+            "p50": 35.911,
+            "p90": 125.409,
+            "p99": 167.659,
+            "max": 247.841553,
+            "min": 6.89755,
+            "stdDev": 50.62383595242414
+          },
+          "relativeToBaseline": 18.52615234242795,
+          "rank": 11
+        },
+        {
+          "name": "tsjam",
+          "originalName": "tsjam-0.7.0-tiny-f5cf7082",
+          "metrics": {
+            "mean": 59.14637605000001,
+            "p50": 48.468,
+            "p90": 134.55,
+            "p99": 185.027,
+            "max": 237.563019,
+            "min": 5.2743590000000005,
+            "stdDev": 54.33406058285948
+          },
+          "relativeToBaseline": 21.194031312686803,
+          "rank": 12
+        },
+        {
+          "name": "tessera",
+          "originalName": "tessera-target",
+          "metrics": {
+            "mean": 83.41826295,
+            "p50": 75.358,
+            "p90": 166.337,
+            "p99": 228.099,
+            "max": 306.339491,
+            "min": 17.313443000000003,
+            "stdDev": 61.109685290638126
+          },
+          "relativeToBaseline": 29.89142184328707,
+          "rank": 13
+        },
+        {
+          "name": "@typeberry/jam",
+          "originalName": "@typeberry/jam",
+          "metrics": {
+            "mean": 108.62499913000002,
+            "p50": 65.781,
+            "p90": 226.097,
+            "p99": 447.926,
+            "max": 617.6580200000001,
+            "min": 19.249484000000002,
+            "stdDev": 122.2336811474927
+          },
+          "relativeToBaseline": 38.923798661064325,
+          "rank": 14
+        },
+        {
+          "name": "jampy",
+          "originalName": "jampy",
+          "metrics": {
+            "mean": 140.89554017999995,
+            "p50": 96.896,
+            "p90": 364.961,
+            "p99": 514.327,
+            "max": 541.226908,
+            "min": 11.766091,
+            "stdDev": 143.66407341153516
+          },
+          "relativeToBaseline": 50.48736186082596,
+          "rank": 15
+        },
+        {
+          "name": "Jamixir",
+          "originalName": "Jamixir",
+          "metrics": {
+            "mean": 161.39267207,
+            "p50": 104.319,
+            "p90": 460.522,
+            "p99": 651.904,
+            "max": 691.4540890000001,
+            "min": 3.547716,
+            "stdDev": 190.915028268741
+          },
+          "relativeToBaseline": 57.83213738400753,
+          "rank": 16
+        },
+        {
+          "name": "PyJAMaz",
+          "originalName": "PyJAMaz",
+          "metrics": {
+            "mean": 224.70083351999997,
+            "p50": 169.394,
+            "p90": 591.255,
+            "p99": 821.13,
+            "max": 962.803238,
+            "min": 8.958969000000002,
+            "stdDev": 239.34159993256105
+          },
+          "relativeToBaseline": 80.51746902606222,
+          "rank": 17
+        },
+        {
+          "name": "strawberry",
+          "originalName": "strawberry",
+          "metrics": {
+            "mean": 365.00935955999967,
+            "p50": 214.44,
+            "p90": 1034.74,
+            "p99": 1462.475,
+            "max": 1506.3803839999998,
+            "min": 6.216191,
+            "stdDev": 420.6361585066856
+          },
+          "relativeToBaseline": 130.79448501457915,
+          "rank": 18
+        },
+        {
+          "name": "gossamer-jam",
+          "originalName": "gossamer-jam",
+          "metrics": {
+            "mean": 566.67043498,
+            "p50": 374.449,
+            "p90": 1695.545,
+            "p99": 2220.947,
+            "max": 2544.686638,
+            "min": 0.336989,
+            "stdDev": 680.8426802544428
+          },
+          "relativeToBaseline": 203.05607452242157,
+          "rank": 19
+        }
+      ],
+      "timestamp": 1762174434483
+    }
+  },
+  "0.7.1": {}
+}

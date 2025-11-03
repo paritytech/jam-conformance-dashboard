@@ -28,7 +28,8 @@ The project consists of:
 
 The performance data is automatically synced from the main jam-conformance repository via GitHub Actions:
 - Runs hourly to fetch latest benchmark results
-- Processes fuzz-report data into optimized JSON files
+- Reads from both `fuzz-reports` (old versions) and `fuzz-perf` (latest versions) to preserve historical data
+- Processes benchmark data into optimized JSON files
 - Deploys updates to GitHub Pages
 
 ## Local Development
@@ -37,7 +38,9 @@ The performance data is automatically synced from the main jam-conformance repos
 # Install dependencies
 npm install
 
-# Sync data from main repo (requires fuzz-reports in parent directory)
+# Sync data from main repo (requires fuzz-perf and fuzz-reports in parent directory)
+# fuzz-reports: contains old version data
+# fuzz-perf: contains latest version data
 npm run update-all-data
 
 # Start development server

@@ -124,5 +124,19 @@
     "languageColor": "#3178c6",
     "author": "Community",
     "url": "https://graypaper.com/clients/#typeberry"
+  },
+  "gossamer-jam": {
+    "displayName": "Gossamer JAM",
+    "language": "Go",
+    "languageColor": "#00add8",
+    "author": "ChainSafe",
+    "url": "https://github.com/chainsafe/gossamer-jam-releases"
+  },
+  "strawberry": {
+    "displayName": "Strawberry",
+    "language": "Go",
+    "languageColor": "#00add8",
+    "author": "Eiger",
+    "url": "https://github.com/eigerco/strawberry"
   }
 }

@@ -2,82 +2,100 @@ const fs = require('fs');
 const path = require('path');
 
 async function generateAllBenchmarksData() {
+  const fuzzPerfPath = path.join(__dirname, '..', '..', 'fuzz-perf');
   const fuzzReportsPath = path.join(__dirname, '..', '..', 'fuzz-reports');
-  const versions = fs.readdirSync(fuzzReportsPath).filter(v => v.match(/^\d+\.\d+\.\d+$/));
+  const outputPath = path.join(__dirname, '..', 'src', 'data', 'all-benchmarks-data.json');
   const benchmarks = ['safrole', 'fallback', 'storage', 'storage_light'];
-  
+
+  // Collect versions from both directories
+  const versionsSet = new Set();
+
+  if (fs.existsSync(fuzzPerfPath)) {
+    fs.readdirSync(fuzzPerfPath)
+      .filter(v => v.match(/^\d+\.\d+\.\d+$/))
+      .forEach(v => versionsSet.add(v));
+    console.log(`Found ${versionsSet.size} versions in fuzz-perf`);
+  }
+
+  if (fs.existsSync(fuzzReportsPath)) {
+    const oldVersions = fs.readdirSync(fuzzReportsPath)
+      .filter(v => v.match(/^\d+\.\d+\.\d+$/));
+    oldVersions.forEach(v => versionsSet.add(v));
+    console.log(`Found ${oldVersions.length} versions in fuzz-reports (${versionsSet.size} total unique)`);
+  }
+
+  const versions = Array.from(versionsSet).sort();
   const allBenchmarksData = {};
   
   for (const version of versions) {
     console.log(`Processing version ${version}...`);
     allBenchmarksData[version] = {};
-    
+
     for (const benchmark of benchmarks) {
       console.log(`  Processing benchmark ${benchmark}...`);
-      
-      const reportsPath = path.join(fuzzReportsPath, version, 'reports');
-      
-      if (!fs.existsSync(reportsPath)) {
-        console.log(`    No reports directory for version ${version}`);
+
+      // Try fuzz-perf first, then fallback to fuzz-reports
+      let versionPath = path.join(fuzzPerfPath, version);
+      let dataSource = 'fuzz-perf';
+
+      if (!fs.existsSync(versionPath)) {
+        versionPath = path.join(fuzzReportsPath, version);
+        dataSource = 'fuzz-reports';
+      }
+
+      console.log(`    Using ${dataSource} for version ${version}`);
+
+      if (!fs.existsSync(versionPath)) {
+        console.log(`    No directory for version ${version}`);
         continue;
       }
-      
-      const teams = fs.readdirSync(reportsPath).filter(team => {
-        const perfPath = path.join(reportsPath, team, 'perf');
-        return fs.existsSync(perfPath) && fs.statSync(perfPath).isDirectory();
+
+      const teams = fs.readdirSync(versionPath).filter(team => {
+        const teamPath = path.join(versionPath, team);
+        return fs.existsSync(teamPath) && fs.statSync(teamPath).isDirectory();
       });
       
       const performanceData = {};
       
       for (const team of teams) {
-        const perfPath = path.join(reportsPath, team, 'perf', `${benchmark}.json`);
-        const perfIntPath = path.join(reportsPath, team, 'perf_int', `${benchmark}.json`);
-        
+        const benchmarkPath = path.join(versionPath, team, `${benchmark}.json`);
+
         try {
           // Check if this team has all required metrics
           const requiredMetrics = ['safrole', 'fallback', 'storage', 'storage_light'];
-          const hasAllMetrics = requiredMetrics.every(m => 
-            fs.existsSync(path.join(reportsPath, team, 'perf', `${m}.json`)) ||
-            fs.existsSync(path.join(reportsPath, team, 'perf_int', `${m}.json`))
+          const hasAllMetrics = requiredMetrics.every(m =>
+            fs.existsSync(path.join(versionPath, team, `${m}.json`))
           );
-          
+
           if (!hasAllMetrics) {
             continue; // Skip teams without all benchmarks
           }
-          
-          // Load both perf and perf_int versions if they exist
-          if (fs.existsSync(perfPath)) {
-            const content = fs.readFileSync(perfPath, 'utf-8');
+
+          // Load benchmark data
+          if (fs.existsSync(benchmarkPath)) {
+            const content = fs.readFileSync(benchmarkPath, 'utf-8');
             const data = JSON.parse(content);
-            // Special handling for polkajam: perf version is the recompiler
+
+            // Special handling for polkajam naming
             if (team === 'polkajam') {
-              // Handle both old and new format
+              // polkajam is the recompiler version
               if (data.info.app_name !== undefined) {
                 data.info.app_name = 'polkajam (recompiler)';
               } else if (data.info.name !== undefined) {
                 data.info.name = 'polkajam (recompiler)';
               }
-            }
-            performanceData[team] = data;
-          }
-          
-          // Load interpreted version separately
-          if (fs.existsSync(perfIntPath)) {
-            const content = fs.readFileSync(perfIntPath, 'utf-8');
-            const data = JSON.parse(content);
-            // For polkajam, the interpreted version is the main one
-            if (team === 'polkajam') {
-              // Don't add (interpreted) suffix for polkajam
-              performanceData[`${team}_interpreted`] = data;
-            } else {
-              // Handle both old and new format
-              const teamName = data.info.app_name || data.info.name || team;
+              performanceData[team] = data;
+            } else if (team === 'polkajam_int') {
+              // polkajam_int is the interpreted version (display as just "polkajam")
               if (data.info.app_name !== undefined) {
-                data.info.app_name = `${teamName} (interpreted)`;
+                data.info.app_name = 'polkajam';
               } else if (data.info.name !== undefined) {
-                data.info.name = `${teamName} (interpreted)`;
+                data.info.name = 'polkajam';
               }
-              performanceData[`${team}_interpreted`] = data;
+              performanceData['polkajam_interpreted'] = data;
+            } else {
+              // All other teams use their original names
+              performanceData[team] = data;
             }
           }
         } catch (error) {
@@ -185,10 +203,9 @@ async function generateAllBenchmarksData() {
   }
   
   // Write all benchmarks data
-  const outputPath = path.join(__dirname, '..', 'src', 'data', 'all-benchmarks-data.json');
   fs.writeFileSync(outputPath, JSON.stringify(allBenchmarksData, null, 2));
-  
-  console.log(`\nGenerated data for ${Object.keys(allBenchmarksData).length} versions`);
+
+  console.log(`\nGenerated data for ${Object.keys(allBenchmarksData).length} versions: ${versions.join(', ')}`);
   console.log(`Output: ${outputPath}`);
 }
 

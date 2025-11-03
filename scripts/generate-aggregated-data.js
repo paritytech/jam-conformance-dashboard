@@ -2,110 +2,107 @@ const fs = require('fs');
 const path = require('path');
 
 async function generateAggregatedData() {
+  const fuzzPerfPath = path.join(__dirname, '..', '..', 'fuzz-perf');
   const fuzzReportsPath = path.join(__dirname, '..', '..', 'fuzz-reports');
-  const versions = fs.readdirSync(fuzzReportsPath).filter(v => v.match(/^\d+\.\d+\.\d+$/));
-  
+  const outputPath = path.join(__dirname, '..', 'src', 'data', 'aggregated-data.json');
+
+  // Collect versions from both directories
+  const versionsSet = new Set();
+
+  if (fs.existsSync(fuzzPerfPath)) {
+    fs.readdirSync(fuzzPerfPath)
+      .filter(v => v.match(/^\d+\.\d+\.\d+$/))
+      .forEach(v => versionsSet.add(v));
+    console.log(`Found ${versionsSet.size} versions in fuzz-perf`);
+  }
+
+  if (fs.existsSync(fuzzReportsPath)) {
+    const oldVersions = fs.readdirSync(fuzzReportsPath)
+      .filter(v => v.match(/^\d+\.\d+\.\d+$/));
+    oldVersions.forEach(v => versionsSet.add(v));
+    console.log(`Found ${oldVersions.length} versions in fuzz-reports (${versionsSet.size} total unique)`);
+  }
+
+  const versions = Array.from(versionsSet).sort();
   const aggregatedData = {};
   
   for (const version of versions) {
     console.log(`Processing version ${version}...`);
-    
-    const reportsPath = path.join(fuzzReportsPath, version, 'reports');
-    
-    if (!fs.existsSync(reportsPath)) {
-      console.log(`  No reports directory for version ${version}`);
+
+    // Try fuzz-perf first, then fallback to fuzz-reports
+    let versionPath = path.join(fuzzPerfPath, version);
+    let dataSource = 'fuzz-perf';
+
+    if (!fs.existsSync(versionPath)) {
+      versionPath = path.join(fuzzReportsPath, version);
+      dataSource = 'fuzz-reports';
+    }
+
+    console.log(`  Using ${dataSource} for version ${version}`);
+
+    if (!fs.existsSync(versionPath)) {
+      console.log(`  No directory for version ${version}`);
       continue;
     }
-    
-    const teams = fs.readdirSync(reportsPath).filter(team => {
-      const perfPath = path.join(reportsPath, team, 'perf');
-      const perfIntPath = path.join(reportsPath, team, 'perf_int');
-      return (fs.existsSync(perfPath) && fs.statSync(perfPath).isDirectory()) ||
-             (fs.existsSync(perfIntPath) && fs.statSync(perfIntPath).isDirectory());
+
+    const teams = fs.readdirSync(versionPath).filter(team => {
+      const teamPath = path.join(versionPath, team);
+      return fs.existsSync(teamPath) && fs.statSync(teamPath).isDirectory();
     });
     
     const teamAggregates = {};
     const benchmarks = ['safrole', 'fallback', 'storage', 'storage_light'];
     
-    // Process each team, including both perf and perf_int versions if they exist
+    // Process each team
     for (const team of teams) {
-      // Process regular perf version
-      const perfTeamData = {
+      const teamData = {
         benchmarks: {},
         hasAllBenchmarks: true
       };
-      
-      // Process interpreted perf_int version
-      const perfIntTeamData = {
-        benchmarks: {},
-        hasAllBenchmarks: true
-      };
-      
-      // Check each benchmark for both versions
+
+      // Check each benchmark
       for (const benchmark of benchmarks) {
-        const perfPath = path.join(reportsPath, team, 'perf', `${benchmark}.json`);
-        const perfIntPath = path.join(reportsPath, team, 'perf_int', `${benchmark}.json`);
-        
-        // Load regular perf data
-        if (fs.existsSync(perfPath)) {
+        const benchmarkPath = path.join(versionPath, team, `${benchmark}.json`);
+
+        if (fs.existsSync(benchmarkPath)) {
           try {
-            const content = fs.readFileSync(perfPath, 'utf-8');
+            const content = fs.readFileSync(benchmarkPath, 'utf-8');
             const data = JSON.parse(content);
-            perfTeamData.benchmarks[benchmark] = {
+            teamData.benchmarks[benchmark] = {
               ...data.stats,
               info: data.info
             };
           } catch (error) {
-            perfTeamData.hasAllBenchmarks = false;
+            teamData.hasAllBenchmarks = false;
           }
         } else {
-          perfTeamData.hasAllBenchmarks = false;
-        }
-        
-        // Load perf_int data
-        if (fs.existsSync(perfIntPath)) {
-          try {
-            const content = fs.readFileSync(perfIntPath, 'utf-8');
-            const data = JSON.parse(content);
-            perfIntTeamData.benchmarks[benchmark] = {
-              ...data.stats,
-              info: data.info
-            };
-          } catch (error) {
-            perfIntTeamData.hasAllBenchmarks = false;
-          }
-        } else {
-          perfIntTeamData.hasAllBenchmarks = false;
+          teamData.hasAllBenchmarks = false;
         }
       }
-      
-      // Add regular version if it has all benchmarks
-      if (perfTeamData.hasAllBenchmarks && Object.keys(perfTeamData.benchmarks).length === benchmarks.length) {
-        const weightedScore = calculateWeightedScore(perfTeamData.benchmarks, benchmarks);
-        const firstBenchmark = Object.values(perfTeamData.benchmarks)[0];
-        const teamName = firstBenchmark.info.name;
-        
-        teamAggregates[team] = {
+
+      // Add team if it has all benchmarks
+      if (teamData.hasAllBenchmarks && Object.keys(teamData.benchmarks).length === benchmarks.length) {
+        const weightedScore = calculateWeightedScore(teamData.benchmarks, benchmarks);
+        const firstBenchmark = Object.values(teamData.benchmarks)[0];
+        const teamName = firstBenchmark.info.name || firstBenchmark.info.app_name;
+
+        // Special handling for polkajam naming
+        let aggregateKey = team;
+        let displayName = teamName;
+
+        if (team === 'polkajam') {
+          // polkajam is the recompiler version
+          displayName = 'polkajam (recompiler)';
+        } else if (team === 'polkajam_int') {
+          // polkajam_int is the interpreted version (display as just "polkajam")
+          aggregateKey = 'polkajam_interpreted';
+          displayName = 'polkajam';
+        }
+
+        teamAggregates[aggregateKey] = {
           info: {
             ...firstBenchmark.info,
-            name: teamName
-          },
-          metrics: weightedScore.metrics,
-          score: weightedScore.score,
-          benchmarkScores: weightedScore.benchmarkScores
-        };
-      }
-      
-      // Add interpreted version if it has all benchmarks
-      if (perfIntTeamData.hasAllBenchmarks && Object.keys(perfIntTeamData.benchmarks).length === benchmarks.length) {
-        const weightedScore = calculateWeightedScore(perfIntTeamData.benchmarks, benchmarks);
-        const firstBenchmark = Object.values(perfIntTeamData.benchmarks)[0];
-        const teamName = firstBenchmark.info.name;
-        
-        teamAggregates[`${team}_interpreted`] = {
-          info: {
-            ...firstBenchmark.info,
-            name: `${teamName} (interpreted)`
+            name: displayName
           },
           metrics: weightedScore.metrics,
           score: weightedScore.score,
@@ -203,10 +200,9 @@ async function generateAggregatedData() {
   }
   
   // Write aggregated data
-  const outputPath = path.join(__dirname, '..', 'src', 'data', 'aggregated-data.json');
   fs.writeFileSync(outputPath, JSON.stringify(aggregatedData, null, 2));
-  
-  console.log(`\nGenerated aggregated data for ${Object.keys(aggregatedData).length} versions`);
+
+  console.log(`\nGenerated aggregated data for ${Object.keys(aggregatedData).length} versions: ${versions.join(', ')}`);
   console.log(`Output: ${outputPath}`);
 }
 

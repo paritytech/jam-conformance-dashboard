@@ -43,9 +43,10 @@ jobs:
       run: |
         git clone https://github.com/davxy/jam-conformance.git temp-jam-conformance
     
-    - name: Copy fuzz-reports data and capture source info
+    - name: Copy benchmark data and capture source info
       run: |
-        rm -rf ../fuzz-reports
+        rm -rf ../fuzz-perf ../fuzz-reports
+        cp -r temp-jam-conformance/fuzz-perf ../
         cp -r temp-jam-conformance/fuzz-reports ../
         node scripts/capture-source-info.js
         rm -rf temp-jam-conformance
@@ -55,7 +56,7 @@ jobs:
     
     - name: Generate data files
       run: npm run update-all-data
-    
+
     - name: Build project
       run: npm run build
     
