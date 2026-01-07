@@ -138,5 +138,12 @@
     "languageColor": "#00add8",
     "author": "Eiger",
     "url": "https://github.com/eigerco/strawberry"
-  }
+  },
+  "graymatter": {
+    "displayName": "GrayMatter",
+    "language": "Elixir",
+    "languageColor": "#6e4a7e",
+    "author": "JamBrains",
+    "url": "https://github.com/JamBrains"
+  },
 }
