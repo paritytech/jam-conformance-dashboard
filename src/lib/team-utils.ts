@@ -14,12 +14,20 @@ const TEAM_NAME_MAPPINGS: Record<string, string> = {
   'tsjam-0.7.0-tiny': 'tsjam',
   'boka-fuzzing-target': 'boka',
   'vinwolf-target': 'vinwolf',
-  'duna-target': 'duna',
-  
+  'duna-target': 'jamduna',
+  'pbnj-fuzzer-target': 'pbnjam',
+
   // Hyphenated variations
   'jam-duna': 'jamduna',
   'jam-duna-target-0.7.0.3': 'jamduna',
-  
+
+  // Scala variations (Jam4s)
+  'jam-scala': 'jam-scala',
+
+  // JAMneration variations
+  'new_jamneration': 'new_jamneration',
+  'new-jamneration': 'new_jamneration',
+
   // Package-style names
   '@typeberry/jam': 'typeberry',
 };
@@ -62,9 +70,16 @@ export function getTeamMetadata(teamName: string): any {
   }
   
   // Try removing common suffixes
-  const nameWithoutSuffix = teamName.replace(/-target.*$/, '').replace(/-\d+\.\d+\.\d+.*$/, '');
+  const nameWithoutSuffix = teamName
+    .replace(/-fuzzing-target.*$/, '')
+    .replace(/-fuzzer-target.*$/, '')
+    .replace(/-target.*$/, '')
+    .replace(/-\d+\.\d+\.\d+.*$/, '');
   if (metadata[nameWithoutSuffix]) {
     return metadata[nameWithoutSuffix];
+  }
+  if (metadata[nameWithoutSuffix.toLowerCase()]) {
+    return metadata[nameWithoutSuffix.toLowerCase()];
   }
   
   // Return empty object if no match found

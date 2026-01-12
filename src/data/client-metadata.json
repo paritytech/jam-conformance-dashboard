@@ -160,6 +160,27 @@
     "author": "Community",
     "url": "https://graypaper.com/clients/#new-jamneration"
   },
+  "new_jamneration": {
+    "displayName": "New JAMneration",
+    "language": "Go",
+    "languageColor": "#00add8",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#new-jamneration"
+  },
+  "jam-scala": {
+    "displayName": "JAM Forge",
+    "language": "Scala",
+    "languageColor": "#c22d40",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#jamforge"
+  },
+  "pbnj-fuzzer-target": {
+    "displayName": "PBnJAM",
+    "language": "TypeScript",
+    "languageColor": "#3178c6",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#pbnjam"
+  },
   "pbnjam": {
     "displayName": "PBnJAM",
     "language": "TypeScript",
@@ -172,7 +193,7 @@
     "language": "Scala",
     "languageColor": "#c22d40",
     "author": "Community",
-    "url": "https://graypaper.com/clients/#jam4s"
+    "url": "https://github.com/jam4scala/"
   },
   "strawberry": {
     "displayName": "Strawberry",
