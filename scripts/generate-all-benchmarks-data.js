@@ -85,8 +85,8 @@ async function generateAllBenchmarksData() {
                 data.info.name = 'polkajam (recompiler)';
               }
               performanceData[team] = data;
-            } else if (team === 'polkajam_int') {
-              // polkajam_int is the interpreted version (display as just "polkajam")
+            } else if (team === 'polkajam_int' || team === 'polkajam-int') {
+              // polkajam_int or polkajam-int is the interpreted version (display as just "polkajam")
               if (data.info.app_name !== undefined) {
                 data.info.app_name = 'polkajam';
               } else if (data.info.name !== undefined) {

@@ -93,8 +93,8 @@ async function generateAggregatedData() {
         if (team === 'polkajam') {
           // polkajam is the recompiler version
           displayName = 'polkajam (recompiler)';
-        } else if (team === 'polkajam_int') {
-          // polkajam_int is the interpreted version (display as just "polkajam")
+        } else if (team === 'polkajam_int' || team === 'polkajam-int') {
+          // polkajam_int or polkajam-int is the interpreted version (display as just "polkajam")
           aggregateKey = 'polkajam_interpreted';
           displayName = 'polkajam';
         }

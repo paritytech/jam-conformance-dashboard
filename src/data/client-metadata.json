@@ -132,6 +132,48 @@
     "author": "ChainSafe",
     "url": "https://github.com/chainsafe/gossamer-jam-releases"
   },
+  "gossamer": {
+    "displayName": "Gossamer",
+    "language": "Go",
+    "languageColor": "#00add8",
+    "author": "ChainSafe",
+    "url": "https://graypaper.com/clients/#gossamer"
+  },
+  "graymatter": {
+    "displayName": "GrayMatter",
+    "language": "Elixir",
+    "languageColor": "#6e4a7e",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#graymatter"
+  },
+  "jamforge": {
+    "displayName": "JAM Forge",
+    "language": "Scala",
+    "languageColor": "#c22d40",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#jamforge"
+  },
+  "new-jamneration": {
+    "displayName": "New JAMneration",
+    "language": "Go",
+    "languageColor": "#00add8",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#new-jamneration"
+  },
+  "pbnjam": {
+    "displayName": "PBnJAM",
+    "language": "TypeScript",
+    "languageColor": "#3178c6",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#pbnjam"
+  },
+  "jam4s": {
+    "displayName": "Jam4s",
+    "language": "Scala",
+    "languageColor": "#c22d40",
+    "author": "Community",
+    "url": "https://graypaper.com/clients/#jam4s"
+  },
   "strawberry": {
     "displayName": "Strawberry",
     "language": "Go",

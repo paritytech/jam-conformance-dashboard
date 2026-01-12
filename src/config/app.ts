@@ -1,5 +1,5 @@
 export const APP_CONFIG = {
-  defaultVersion: '0.7.0',
+  defaultVersion: '0.7.2',
   
   benchmarks: {
     available: ['safrole', 'fallback', 'storage', 'storage_light'],
